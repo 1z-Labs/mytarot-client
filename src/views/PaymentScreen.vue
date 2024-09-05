@@ -38,6 +38,7 @@ export default {
   <!--휴대폰 인증-->
   <div class="px-4 py-5">
     <p class="text-lg font-bold">휴대폰 인증</p>
+    <!--약관 동의 안내-->
     <div class="my-3 bg-gray-100 rounded-lg flex gap-3.5 p-4">
       <img src="@/assets/payments/icons/bookIcon.svg" width="35">
       <div>
