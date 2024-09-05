@@ -19,7 +19,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
+  <div class="flex w-[375px] h-[44px] px-[20px] py-[3px] justify-between items-center flex-shrink-0 bg-gray-100">
     <img src="@/assets/backBtn.svg" @click="handleBack">
   </div>
 </template>

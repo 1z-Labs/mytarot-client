@@ -8,16 +8,17 @@ import PaymentScreen from "@/views/PaymentScreen.vue";
 const routes = [
     {
         path: '/resultInfo',
-        name:'ResultInfoScreen',
-        component:ResultlInfoScreen,
+        name: 'ResultInfoScreen',
+        component: ResultlInfoScreen,
     },
     {
         path: '/resultChapter',
-        name:'ResultChapterScreen',
-        component:ResultChapterScreen,
+        name: 'ResultChapterScreen',
+        component: ResultChapterScreen,
     },
+    {
         path: '/writeInfo',
-        name:'WriteInfoScreen',
+        name: 'WriteInfoScreen',
         component: WriteInfoScreen
     },
     {
