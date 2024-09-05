@@ -2,7 +2,6 @@
 export default {
   name: "agreeTerms",
   data() {
-    // 버튼 활성화 여부
     return {
       isButtonActive: false,
       isServiceChecked: false,
@@ -14,11 +13,20 @@ export default {
       return this.isServiceChecked && this.isPrivacyChecked;
     },
   },
-  // allChecked 상태 자동화
   watch: {
-    // 두 약관 체크 상태가 변경될 때 전체 동의 버튼의 상태를 자동으로 업데이트
     allChecked(newVal) {
+      // Automatically activate the button when both checkboxes are checked
       this.isButtonActive = newVal;
+    },
+    isServiceChecked(newVal) {
+      if (!newVal || !this.isPrivacyChecked) {
+        this.isButtonActive = false;
+      }
+    },
+    isPrivacyChecked(newVal) {
+      if (!newVal || !this.isServiceChecked) {
+        this.isButtonActive = false;
+      }
     }
   },
   methods: {
@@ -32,6 +40,9 @@ export default {
     // 체크할 항목을 문자열 인자로 받아 처리하도록 개선
     toggleCheck(type) {
       this[type] = !this[type];
+      if (!this.isServiceChecked || !this.isPrivacyChecked) {
+        this.isButtonActive = false;
+      }
     }
   }
 };

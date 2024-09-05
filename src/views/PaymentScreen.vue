@@ -26,7 +26,7 @@ export default {
     <sms-auth/><!--input field-->
   </div>
 
-  <button type="submit" class="py-5 w-full flex items-center justify-center text-white bg-primary fixed bottom-0 left-0 right-0 text-xl font-bold">
+  <button type="submit" class="py-5 w-full flex items-center justify-center text-white bg-gray-400 fixed bottom-0 left-0 right-0 text-xl font-bold">
     인증문자 받기
   </button>
 </template>
