@@ -63,7 +63,27 @@ export default {
         <p class="text-[12px]">해석이 완료되면 알림톡으로 알려드릴 수 있어요</p>
       </div>
     </div>
+
+    <!--input field-->
+    <div class="my-5 flex flex-col gap-3">
+      <input
+          type="text"
+          placeholder="이름/닉네임 최대 10자"
+          class="w-full py-2 text-xl border-b-2 border-gray-300 focus:border-primary text-primary
+          placeholder:text-xl placeholder:font-bold focus:outline-none transition duration-300"
+      />
+      <input
+          type="text"
+          placeholder="휴대폰 번호 숫자 11자리"
+          class="w-full py-2 text-xl border-b-2 border-gray-300 focus:border-primary text-primary
+          placeholder:text-xl placeholder:font-bold focus:outline-none transition duration-300"
+      />
+    </div>
   </div>
+
+  <button type="submit" class="py-5 w-full flex items-center justify-center text-white bg-primary fixed bottom-0 left-0 right-0 text-xl font-bold">
+    인증문자 받기
+  </button>
 </template>
 
 <style scoped>
