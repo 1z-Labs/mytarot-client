@@ -34,6 +34,18 @@ export default {
 
   <!--컴포넌트 구분선-->
   <div class="bg-gray-200 h-2"></div>
+
+  <!--휴대폰 인증-->
+  <div class="px-4 py-5">
+    <p class="text-lg font-bold">휴대폰 인증</p>
+    <div class="my-3 bg-gray-100 rounded-lg flex gap-3.5 p-4">
+      <img src="@/assets/payments/icons/bookIcon.svg" width="35">
+      <div>
+        <p class="text-[10px] text-gray-500">약관에 동의해주셔야</p>
+        <p class="text-[12px]">해석이 완료되면 알림톡으로 알려드릴 수 있어요</p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
