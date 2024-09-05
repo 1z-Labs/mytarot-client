@@ -14,25 +14,24 @@ export default {
       return this.isServiceChecked && this.isPrivacyChecked;
     },
   },
+  // allChecked 상태 자동화
+  watch: {
+    // 두 약관 체크 상태가 변경될 때 전체 동의 버튼의 상태를 자동으로 업데이트
+    allChecked(newVal) {
+      this.isButtonActive = newVal;
+    }
+  },
   methods: {
     // 전체 동의 버튼이 활성화 되면 두 약관 모두 활성화
     toggleButton() {
-      this.isButtonActive = !this.isButtonActive;
-      if (this.isButtonActive) {
-        this.isServiceChecked = true;
-        this.isPrivacyChecked = true;
-      } else {
-        this.isServiceChecked = false;
-        this.isPrivacyChecked = false;
-      }
+      const newState = !this.isButtonActive;
+      this.isButtonActive = newState;
+      this.isServiceChecked = newState;
+      this.isPrivacyChecked = newState;
     },
-    toggleCheck() {
-      this.isServiceChecked = !this.isServiceChecked;
-      this.isPrivacyChecked = !this.isPrivacyChecked;
-
-      if (!this.allChecked) {
-        this.isButtonActive = false;
-      }
+    // 체크할 항목을 문자열 인자로 받아 처리하도록 개선
+    toggleCheck(type) {
+      this[type] = !this[type];
     }
   }
 };
@@ -48,12 +47,12 @@ export default {
       <p>마이타로 이용 약관 동의</p>
     </div>
     <div class="flex flex-col gap-2">
-      <div class="flex gap-2 items-center" @click="toggleCheck">
+      <div class="flex gap-2 items-center" @click="toggleCheck('isServiceChecked')">
         <img
             :src="isServiceChecked ? require('@/assets/payments/icons/activatedCheckIcon.svg') : require('@/assets/payments/icons/deactivatedCheckIcon.svg')">
         <p>(필수) 서비스 이용약관 ></p>
       </div>
-      <div class="flex gap-2 items-center" @click="toggleCheck">
+      <div class="flex gap-2 items-center" @click="toggleCheck('isPrivacyChecked')">
         <img
             :src="isPrivacyChecked ? require('@/assets/payments/icons/activatedCheckIcon.svg') : require('@/assets/payments/icons/deactivatedCheckIcon.svg')">
         <p>(필수) 개인정보 수집이용 동의 ></p>
