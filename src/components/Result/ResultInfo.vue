@@ -1,18 +1,31 @@
 <script>
+import {useRouter} from "vue-router";
+
 export default {
-name: "ResultInfo"
+  name: "ResultInfo",
+
+  setup() {
+    const router = useRouter()
+
+    const handleImg = () =>{
+      router.push('/resultChapter')
+    }
+    return {
+      handleImg
+    }
+  }
 }
 </script>
 
 <template>
   <div>
-    <h1>result screen</h1>
+    <img src="@/assets/Result/ResultInfo.jpg" @click="handleImg">
   </div>
 </template>
 
 <style module>
-h1{
-  background-color: #039be5;
+* {
+  padding: 0;
+  margin: 0;
 }
-
 </style>
