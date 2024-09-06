@@ -73,7 +73,7 @@ export default {
 
     <!--카드사 / 할부 드롭다운-->
     <div class="flex flex-col gap-2">
-      <select class="bg-gray-100 rounded-lg p-4" v-model="selectedCardCompany">
+<!--      <select class="bg-gray-100 rounded-lg p-4" v-model="selectedCardCompany">-->
       <select class="bg-gray-100 rounded-lg p-3" v-model="selectedCardCompany">
 
         <option value="" disabled>카드사 선택</option>
@@ -82,7 +82,7 @@ export default {
         <option value="신한카드">신한카드</option>
       </select>
 
-      <select class="bg-gray-100 rounded-lg p-4" v-model="selectedInstallmentPlan">
+<!--      <select class="bg-gray-100 rounded-lg p-4" v-model="selectedInstallmentPlan">-->
 
       <select class="bg-gray-100 rounded-lg p-3" v-model="selectedInstallmentPlan">
 
