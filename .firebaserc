@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "mytarot-client-e164f"
-  }
+    "default": "mytarotclient",
+    "dev": "mytarot-client-dbaa1"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
