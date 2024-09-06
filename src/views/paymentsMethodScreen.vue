@@ -1,8 +1,16 @@
 <script>
 export default {
   name: "paymentsMethodScreen",
+  data() {
+    return {
+      selectedPaymentMethod: "", // 선택된 결제수단
+      selectedCardCompany: "", // 선택된 카드사
+      selectedInstallmentPlan: "" // 선택된 할부 옵션
+    };
+  },
   methods: {
     handlePaymentMethod(method) {
+      this.selectedPaymentMethod = method;
       console.log(`${method} 결제 방식이 선택되었습니다.`);
     }
   }
@@ -42,6 +50,29 @@ export default {
         </button>
       </div>
     </div>
+
+    <!--카드사 / 할부 드롭다운-->
+    <div class="flex flex-col gap-2">
+      <select class="bg-gray-100 rounded-lg p-3" v-model="selectedCardCompany">
+        <option value="" disabled>카드사를 선택하세요</option>
+        <option value="삼성카드">삼성카드</option>
+        <option value="우리카드">우리카드</option>
+        <option value="신한카드">신한카드</option>
+      </select>
+      <select class="bg-gray-100 rounded-lg p-3" v-model="selectedInstallmentPlan">
+        <option value="" disabled>할부를 선택하세요</option>
+        <option value="일시불">일시불</option>
+        <option value="1개월">1개월 (무이자)</option>
+        <option value="2개월">2개월 (무이자)</option>
+      </select>
+    </div>
+
+    <!-- 선택된 항목을 출력 (디버깅용) -->
+<!--    <div class="mt-4">-->
+<!--      <p>선택된 결제 수단: {{ selectedPaymentMethod }}</p>-->
+<!--      <p>선택된 카드사: {{ selectedCardCompany }}</p>-->
+<!--      <p>선택된 할부 옵션: {{ selectedInstallmentPlan }}</p>-->
+<!--    </div>-->
   </div>
 </template>
 
