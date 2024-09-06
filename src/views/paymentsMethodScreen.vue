@@ -5,13 +5,17 @@ export default {
     return {
       selectedPaymentMethod: "", // 선택된 결제수단
       selectedCardCompany: "", // 선택된 카드사
-      selectedInstallmentPlan: "" // 선택된 할부 옵션
+      selectedInstallmentPlan: "", // 선택된 할부 옵션
+      isTermsExpanded: false,
     };
   },
   methods: {
     handlePaymentMethod(method) {
       this.selectedPaymentMethod = method;
       console.log(`${method} 결제 방식이 선택되었습니다.`);
+    },
+    toggleTerms() {
+      this.isTermsExpanded = !this.isTermsExpanded;
     }
   }
 }
@@ -54,25 +58,32 @@ export default {
     <!--카드사 / 할부 드롭다운-->
     <div class="flex flex-col gap-2">
       <select class="bg-gray-100 rounded-lg p-3" v-model="selectedCardCompany">
-        <option value="" disabled>카드사를 선택하세요</option>
+        <option value="" disabled>카드사 선택</option>
         <option value="삼성카드">삼성카드</option>
         <option value="우리카드">우리카드</option>
         <option value="신한카드">신한카드</option>
       </select>
       <select class="bg-gray-100 rounded-lg p-3" v-model="selectedInstallmentPlan">
-        <option value="" disabled>할부를 선택하세요</option>
+        <option value="" disabled>할부 선택</option>
         <option value="일시불">일시불</option>
         <option value="1개월">1개월 (무이자)</option>
         <option value="2개월">2개월 (무이자)</option>
       </select>
     </div>
 
-    <!-- 선택된 항목을 출력 (디버깅용) -->
-<!--    <div class="mt-4">-->
-<!--      <p>선택된 결제 수단: {{ selectedPaymentMethod }}</p>-->
-<!--      <p>선택된 카드사: {{ selectedCardCompany }}</p>-->
-<!--      <p>선택된 할부 옵션: {{ selectedInstallmentPlan }}</p>-->
-<!--    </div>-->
+    <div class="flex mt-3 items-center cursor-pointer" @click="toggleTerms">
+      <img src="@/assets/payments/icons/activatedCheckIcon.svg" alt="약관 동의 아이콘">
+      <p class="text-sm ml-2 text-gray-700">(필수) 결제 서비스 이용 약관, 개인정보 처리 동의</p>
+    </div>
+
+    <!-- 약관 리스트 (v-if로 조건부 렌더링) -->
+    <transition name="fade">
+      <ul v-if="isTermsExpanded" class="list-disc ml-8 text-gray-500 flex flex-col gap-2">
+        <li class="text-xs">(필수) 결제 서비스 이용 약관, 개인정보 처리 동의</li>
+        <li class="text-xs">(필수) 개인정보 제3자 정보 제공 동의</li>
+        <li class="text-xs">(필수) 결제대행 서비스 이용약관 동의</li>
+      </ul>
+    </transition>
   </div>
 </template>
 
