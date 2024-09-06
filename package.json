@@ -21,8 +21,7 @@
     "process": "^0.11.10",
     "stream-http": "^3.2.0",
     "url": "^0.11.4",
-    "vue": "@vue/compat",
-    "vue-drumroll-datetime-picker": "^2.0.0",
+    "vue": "^3.2.13",
     "vue-router": "^4.0.13"
   },
   "devDependencies": {
