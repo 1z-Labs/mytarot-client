@@ -26,6 +26,10 @@ export default {
     updateFormStatus(status) {
       this.isFormValid = status;
     },
+    // 버튼 클릭 시 콘솔 메시지 출력
+    handleButtonClick() {
+      console.log("button is Clicked!");
+    }
   },
 };
 </script>
@@ -54,12 +58,12 @@ export default {
 <!--    <p>버튼 활성화 여부: {{ isButtonEnabled }}</p>-->
 <!--  </div>-->
 
-
   <button
       type="submit"
       class="py-5 w-full flex items-center justify-center text-white fixed bottom-0 left-0 right-0 text-xl font-bold"
       :class="isButtonEnabled ? 'bg-primary' : 'bg-gray-400'"
       :disabled="!isButtonEnabled"
+      @click="handleButtonClick"
   >
     인증문자 받기
   </button>
