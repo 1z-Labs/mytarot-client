@@ -60,7 +60,8 @@ export default {
 }
 
 .payment-button:hover {
-  background-color: #e2e2e2; /* hover 시 색상 변경 */
+  background-color: #1E2352; /* hover 시 색상 변경 */
+  color: #FFF;
 }
 
 .flex-grow {
