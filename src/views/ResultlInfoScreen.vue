@@ -4,7 +4,9 @@ import ResultInfo from "@/components/Result/ResultInfo.vue";
 
 export default defineComponent({
   name: "ResultInfoScreen",
-  components: {ResultInfo}
+  components: {
+    ResultInfo
+  }
 })
 </script>
 
