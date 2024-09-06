@@ -16,6 +16,9 @@ export default {
     },
     toggleTerms() {
       this.isTermsExpanded = !this.isTermsExpanded;
+    },
+    handleButtonClick() {
+      console.log("button is Clicked!");
     }
   }
 }
@@ -84,20 +87,29 @@ export default {
       </select>
     </div>
 
-    <div class="flex mt-3 items-center cursor-pointer" @click="toggleTerms">
-      <img src="@/assets/payments/icons/activatedCheckIcon.svg" alt="약관 동의 아이콘">
-      <p class="text-sm ml-2 text-gray-700">(필수) 결제 서비스 이용 약관, 개인정보 처리 동의</p>
-    </div>
+    <!--약관 동의 펼쳐보기-->
+    <div class="flex flex-col gap-3">
+      <div class="flex mt-3 items-center cursor-pointer" @click="toggleTerms">
+        <img src="@/assets/payments/icons/activatedCheckIcon.svg" alt="약관 동의 아이콘">
+        <p class="text-sm text-gray-700">(필수) 결제 서비스 이용 약관, 개인정보 처리 동의</p>
+      </div>
 
-    <!-- 약관 리스트 (v-if로 조건부 렌더링) -->
-    <transition name="fade">
-      <ul v-if="isTermsExpanded" class="list-disc ml-8 text-gray-500 flex flex-col gap-2">
-        <li class="text-xs">(필수) 결제 서비스 이용 약관, 개인정보 처리 동의</li>
-        <li class="text-xs">(필수) 개인정보 제3자 정보 제공 동의</li>
-        <li class="text-xs">(필수) 결제대행 서비스 이용약관 동의</li>
-      </ul>
-    </transition>
+      <!-- 약관 리스트 (v-if로 조건부 렌더링) -->
+      <transition name="fade">
+        <ul v-if="isTermsExpanded" class="list-disc ml-8 text-gray-500 flex flex-col gap-2">
+          <li class="text-xs">(필수) 결제 서비스 이용 약관, 개인정보 처리 동의</li>
+          <li class="text-xs">(필수) 개인정보 제3자 정보 제공 동의</li>
+          <li class="text-xs">(필수) 결제대행 서비스 이용약관 동의</li>
+        </ul>
+      </transition>
+    </div>
   </div>
+
+  <!--결제 버튼-->
+  <button class="bg-primary text-white text-lg font-bold p-4 text-center fixed bottom-0 left-0 right-0"
+  @click="handleButtonClick">
+    18,000원 결제하기
+  </button>
 </template>
 
 <style scoped>
