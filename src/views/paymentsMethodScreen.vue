@@ -6,7 +6,7 @@ export default {
       selectedPaymentMethod: "", // 선택된 결제수단
       selectedCardCompany: "", // 선택된 카드사
       selectedInstallmentPlan: "", // 선택된 할부 옵션
-      isTermsExpanded: false,
+      isTermsExpanded: false, // 약관 리스트의 상태
     };
   },
   methods: {
@@ -38,18 +38,31 @@ export default {
     <p class="text-xl font-bold">결제 방법</p>
     <div class="my-2 flex flex-col gap-2">
       <!-- 신용카드 버튼 -->
-      <button class="payment-button" @click="handlePaymentMethod('신용카드')">
+      <button
+          class="payment-button"
+          :class="selectedPaymentMethod === '신용카드' ? 'bg-primary text-white' : ''"
+          @click="handlePaymentMethod('신용카드')">
         신용카드
       </button>
+
       <!-- 나머지 결제 수단 버튼 -->
       <div class="flex gap-2">
-        <button class="payment-button flex-grow" @click="handlePaymentMethod('휴대폰')">
+        <button
+            class="payment-button flex-grow"
+            :class="selectedPaymentMethod === '휴대폰' ? 'bg-primary text-white' : ''"
+            @click="handlePaymentMethod('휴대폰')">
           휴대폰
         </button>
-        <button class="payment-button flex-grow flex items-center justify-center" @click="handlePaymentMethod('카카오페이')">
+        <button
+            class="payment-button flex-grow flex items-center justify-center"
+            :class="selectedPaymentMethod === '카카오페이' ? 'bg-primary text-white' : ''"
+            @click="handlePaymentMethod('카카오페이')">
           <img src="@/assets/payments/icons/kakaoPayIcon.svg" alt="카카오페이">
         </button>
-        <button class="payment-button flex-grow flex items-center justify-center" @click="handlePaymentMethod('토스페이')">
+        <button
+            class="payment-button flex-grow flex items-center justify-center"
+            :class="selectedPaymentMethod === '토스페이' ? 'bg-primary text-white' : ''"
+            @click="handlePaymentMethod('토스페이')">
           <img src="@/assets/payments/icons/tossPayIcon.svg" alt="토스페이">
         </button>
       </div>
@@ -108,5 +121,10 @@ export default {
 
 .flex-grow {
   flex-grow: 1; /* 동일한 크기로 버튼 배치 */
+}
+
+/* primary 색상 고정 */
+.bg-primary {
+  background-color: #1E2352; /* primary 색상 */
 }
 </style>
