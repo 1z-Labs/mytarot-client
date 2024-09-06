@@ -1,7 +1,37 @@
 <script>
+import PayContentsInfo from "@/components/payments/payContentsInfo.vue";
+import SmsAuth from "@/components/payments/smsAuth.vue";
+import AgreeTerms from "@/components/payments/agreeTerms.vue";
+
 export default {
   name: "PaymentScreen",
-}
+  components: { AgreeTerms, SmsAuth, PayContentsInfo },
+  data() {
+    return {
+      isAllTermsChecked: false, // 약관동의 선택 여부
+      isFormValid: false, // 이름 / 전화번호 상태 (오타 수정됨)
+    };
+  },
+  computed: {
+    // 버튼 활성화 조건
+    isButtonEnabled() {
+      return this.isAllTermsChecked && this.isFormValid;
+    },
+  },
+  methods: {
+    // 약관 동의 상태 업데이트
+    updateTermsStatus(status) {
+      this.isAllTermsChecked = status;
+    },
+    updateFormStatus(status) {
+      this.isFormValid = status;
+    },
+    // 버튼 클릭 시 콘솔 메시지 출력
+    handleButtonClick() {
+      console.log("button is Clicked!");
+    }
+  },
+};
 </script>
 
 <template>
@@ -10,30 +40,33 @@ export default {
     <p class="text-xl font-bold">결제하기</p>
   </div>
 
-  <!--제품 정보-->
-  <div class="px-4 py-5">
-    <!--제품 이미지 / 제목-->
-    <div>
-      <p class="text-lg font-bold">결제 정보</p>
-      <div class="py-3 flex items-start gap-2.5">
-        <img src="@/assets/payments/thumbnail.svg" alt="제품사진" width="70">
-        <p class="text-md font-bold">짝사랑이 이뤄지는 사주비책</p>
-      </div>
-    </div>
-    <!--구분선 div 만들기-->
-    <div class="mt-2 bg-gray-200 h-0.5"></div>
-    <!--결제 금액-->
-    <div class="flex justify-between items-center pt-4">
-      <p class="text-md font-bold">결제 금액</p>
-      <div class="flex gap-2 items-center">
-        <p class="text-md line-through font-normal text-gray-400">24,000원</p>
-        <p class="text-xl font-semibold text-primary">18,000원</p>
-      </div>
-    </div>
-  </div>
+  <pay-contents-info/><!--제품 정보 섹션-->
 
   <!--컴포넌트 구분선-->
   <div class="bg-gray-200 h-2"></div>
+
+  <!--휴대폰 인증 섹션-->
+  <div class="px-4 py-5">
+    <agree-terms @termsStatus="updateTermsStatus"/><!--약관 동의-->
+    <sms-auth @formStatus="updateFormStatus"/><!--input field-->
+  </div>
+
+  <!-- 상태 값 출력 (디버깅용) -->
+<!--  <div class="text-center mb-4">-->
+<!--    <p>약관 동의: {{ isAllTermsChecked }}</p>-->
+<!--    <p>폼 유효성: {{ isFormValid }}</p>-->
+<!--    <p>버튼 활성화 여부: {{ isButtonEnabled }}</p>-->
+<!--  </div>-->
+
+  <button
+      type="submit"
+      class="py-5 w-full flex items-center justify-center text-white fixed bottom-0 left-0 right-0 text-xl font-bold"
+      :class="isButtonEnabled ? 'bg-primary' : 'bg-gray-400'"
+      :disabled="!isButtonEnabled"
+      @click="handleButtonClick"
+  >
+    인증문자 받기
+  </button>
 </template>
 
 <style scoped>
