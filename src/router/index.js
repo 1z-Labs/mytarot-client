@@ -4,6 +4,7 @@ import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue";
 import ResultChapterScreen from "@/views/ResultChapterScreen.vue";
 import WriteInfoScreen from "@/views/WriteInfoScreen.vue";
 import PaymentScreen from "@/views/PaymentScreen.vue";
+import paymentsMethodScreen from "@/views/paymentsMethodScreen.vue";
 
 const routes = [
     {
@@ -25,6 +26,10 @@ const routes = [
         path: '/payments',
         name: 'PaymentsScreen',
         component: PaymentScreen,
+    },{
+        path: '/paymentsMethod',
+        name: 'paymentsMethodScreen',
+        component: paymentsMethodScreen,
     }
 ]
 
