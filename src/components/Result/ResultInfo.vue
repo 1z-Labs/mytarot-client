@@ -10,7 +10,7 @@ export default {
     const gptResults = JSON.parse(localStorage.getItem('gptResults') || '[]');
 
     const handleImg = () => {
-      router.push({ path: '/resultChapter' });
+      router.push({ path: '/resultChapter/0' });
     };
 
     return {
