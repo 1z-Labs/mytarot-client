@@ -30,7 +30,14 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   column-gap: 7px;
+}
+p{
+  width: 85.3vw;
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
 }
 .body{
   display: flex;
