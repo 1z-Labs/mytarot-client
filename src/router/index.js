@@ -1,9 +1,9 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue";
-import ResultChapterScreen from "@/views/ResultChapterScreen.vue";
 import WriteInfoScreen from "@/views/WriteInfoScreen.vue";
 import PaymentScreen from "@/views/PaymentScreen.vue";
+import ResultAnswerScreen from "@/views/ResultAnswerScreen.vue";
 import ResultCreateScreen from "@/views/ResultCreateScreen.vue";
 import paymentsMethodScreen from "@/views/paymentsMethodScreen.vue";
 
@@ -14,14 +14,16 @@ const routes = [
         component: ResultlInfoScreen,
     },
     {
-        path: '/resultChapter',
-        name: 'ResultChapterScreen',
-        component: ResultChapterScreen,
-    },
-    {
-        path: '/resultCreate',
+        path: '/resultCreate',  // 첫 페이지는 목차
         name: 'ResultCreateScreen',
         component: ResultCreateScreen,
+        props: { default: true },
+    },
+    {
+        path: '/resultChapter/:chapterIndex',  // 이후 페이지는 chapterIndex로 구분
+        name: 'ResultAnswerScreen',
+        component: ResultAnswerScreen,
+        props: true
     },
     {
         path: '/writeInfo',
