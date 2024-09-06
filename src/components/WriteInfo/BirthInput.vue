@@ -1,20 +1,21 @@
 <template>
-  <div class="container">
+  <div class="con">
     <div class="header">
       <p>생년월일</p>
       <span> * 양력으로 입력해주세요</span>
     </div>
     <div class="body">
-      <div v-for="(field, index) in fields" :key="index" class="box">
+      <div v-for="(field, index) in fields" :key="index" class="box" >
         <input
             ref="inputs"
-            type="number"
+            type="text"
             v-model="field.value"
-            :placeholder="'0'.repeat(placeholder)"
-            @focus="clearPlaceholder(index)"
-            @blur="resetPlaceholder(index)"
-            @input="moveToNext(index)"
-            :maxlength="field.placeholder"
+            :placeholder="field.placeholder"
+            @focus="setBolder(index)"
+            @blur="setNumberFomat(index)"
+            @input="limitInputLength(index)"
+            @keydown="allowOnlyNumber($event, index)"
+            :maxlength="getMaxLength(index)"
         /> {{ field.label }}
       </div>
     </div>
@@ -26,75 +27,81 @@ export default {
   data() {
     return {
       fields: [
-        { label: '년', value: '', placeholder: 4 },
-        { label: '월', value: '', placeholder: 2 },
-        { label: '일', value: '', placeholder: 2 }
+        { label: '년', value: '', placeholder: '0000' },
+        { label: '월', value: '', placeholder: '00' },
+        { label: '일', value: '', placeholder: '00' }
       ]
     };
   },
   methods: {
-    clearPlaceholder(index) {
-      this.fields[index].placeholder = ''; // 포커스 시 placeholder를 빈 문자열로 설정
+    setBolder(index) { // 포커스가 들어왔을 때 테두리 변경
+      this.$refs.inputs[index].style.outline = 'none';
+
     },
-    resetPlaceholder(index) {
+    setNumberFomat(index) {
       if (this.fields[index].value === '') {
-        this.fields[index].placeholder = this.getDefaultPlaceholder(index); // 기본 placeholder로 복구
+        this.fields[index].value = '';
+      } else if (index > 0) {
+        this.fields[index].value = this.fields[index].value.padStart(2, '0');
       }
     },
-    getDefaultPlaceholder(index) {
-      // 각 필드의 기본 placeholder를 반환
-      const defaultPlaceholders = ["0000", "00", "00"];
-      return defaultPlaceholders[index];
+    limitInputLength(index) { // 입력값 자릿수를 제한함.
+      const field = this.fields[index];
+      field.value = field.value.replace(/\D/g, '');
+
+      if (index === 0) {
+        field.value = field.value.slice(0, 4);
+      } else {
+        field.value = field.value.slice(0, 2);
+      }
+      if (this.isValidInput(index) && this.isCompleteInput(index)) { // 입력값이 유효하고 완료되었을 때 다음 input으로 이동
+        this.moveToNext(index);
+      }
     },
-    moveToNext(index) {
-      const currentField = this.fields[index];
-      const value = currentField.value;
+    allowOnlyNumber(event) { // 숫자만 입력 가능하도록 제한하기
+      if (!/^\d$/.test(event.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
+        event.preventDefault();
+      }
+    },
+    isCompleteInput(index) {
+      if (index === 0) {
+        return this.fields[index].value.length === 4;
+      } else {
+        return this.fields[index].value.length === 2;
+      }
+    },
+    isValidInput(index) {
+      const value = parseInt(this.fields[index].value, 10);
       const year = new Date().getFullYear();
 
-      console.log(parseInt(value.toString().padStart(2, '0')));
-
-      // 0번째 인덱스: 연도 입력
       if (index === 0) {
-        const numericValue = parseInt(currentField.value , 10);
-        if (numericValue >= 1900 && numericValue <= year) {
-          // 연도가 유효하면 다음 필드로 포커스 이동
-          if (this.$refs.inputs[index + 1]) {
-            this.$refs.inputs[index + 1].focus();
-          }
-        }
-        // 1번째 인덱스: 월 입력
+        return value >= 1900 && value <= year && this.fields[index].value.length === 4;
       } else if (index === 1) {
-        const numericValue = parseInt(value, 10);
-        if (numericValue >= 1 && numericValue <= 12) {
-          if(numericValue <= 9)
-            currentField.value= parseInt(value.toString().padStart(2, '0')); // 한자리 숫자는 0으로 패딩
-          else  currentField.value = value;
-
-          if (this.$refs.inputs[index + 1])
-            this.$refs.inputs[index + 1].focus(); // 다음 필드가 있을 경우 포커스 이동
-        }
-        // 2번째 인덱스: 일 입력
+        return value >= 1 && value <= 12;
       } else if (index === 2) {
-        const numericValue = parseInt(value, 10);
-        if (numericValue >= 1 && numericValue <= 31) {
-          currentField.value =parseInt(value.toString().padStart(2, '0')); // 한자리 숫자는 0으로 패딩
-          if (this.$refs.inputs[index + 1]) {
-            this.$refs.inputs[index + 1].focus(); // 다음 필드가 있을 경우 포커스 이동
-          }
-        }
+        return value >= 1 && value <= 31;
       }
+      return false;
+    },
+    moveToNext(index) {
+      if (this.$refs.inputs[index + 1]) {
+        this.$refs.inputs[index + 1].focus();
+      }
+    },
+    getMaxLength(index) {
+      return index === 0 ? 4 : 2;
     },
   }
 }
 </script>
 
 <style scoped>
-.container {
+.con {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  width: 100%;
 }
 
 div {
@@ -112,7 +119,10 @@ div {
   font-size: 18px;
   font-weight: 700;
 }
-.box{
+
+.box {
+  display: block;
+  width: fit-content;
   align-items: baseline;
   font-size: 18px;
   font-weight: 700;
@@ -128,13 +138,15 @@ input {
   width: 12.8vw;
   height: 5.1vh;
   border-radius: 8px;
-  border: none;
+  border: 1px solid #ccc;
   text-align: center;
   font-weight: 700;
   background: #F5F5F5;
+  margin-right: 8px;
+  outline: none;
 }
 
-input:first-child {
+div:first-child > input {
   width: 21.3vw;
 }
 
@@ -143,9 +155,12 @@ input::placeholder {
   font-size: 18px;
   font-weight: 700;
 }
-
 input:focus {
-  outline: 2px solid #242424;
-  box-sizing: border-box;
+  border: 2px solid #2e2e2e;
+}
+p {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
 }
 </style>
