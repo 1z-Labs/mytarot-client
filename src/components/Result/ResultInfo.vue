@@ -1,20 +1,24 @@
 <script>
-import {useRouter} from "vue-router";
+import { useRouter } from 'vue-router';
 
 export default {
   name: "ResultInfo",
-
   setup() {
-    const router = useRouter()
+    const router = useRouter();
 
-    const handleImg = () =>{
-      router.push('/resultChapter')
-    }
+    // localStorage에서 GPT 결과 읽기
+    const gptResults = JSON.parse(localStorage.getItem('gptResults') || '[]');
+
+    const handleImg = () => {
+      router.push({ path: '/resultChapter' });
+    };
+
     return {
-      handleImg
-    }
+      gptResults,
+      handleImg,
+    };
   }
-}
+};
 </script>
 
 <template>
@@ -22,10 +26,3 @@ export default {
     <img src="@/assets/Result/ResultInfo.jpg" @click="handleImg">
   </div>
 </template>
-
-<style module>
-* {
-  padding: 0;
-  margin: 0;
-}
-</style>
