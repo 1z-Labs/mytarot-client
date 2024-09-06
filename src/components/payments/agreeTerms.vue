@@ -15,8 +15,8 @@ export default {
   },
   watch: {
     allChecked(newVal) {
-      // Automatically activate the button when both checkboxes are checked
       this.isButtonActive = newVal;
+      this.$emit('termsStatus', newVal); // 상태를 부모 컴포넌트에 전달
     },
     isServiceChecked(newVal) {
       if (!newVal || !this.isPrivacyChecked) {
