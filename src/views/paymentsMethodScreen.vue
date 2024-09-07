@@ -31,7 +31,7 @@ export default {
   </div>
 
   <!--결제 금액-->
-  <div class="bg-gray-100 rounded-lg flex justify-between items-center p-3 m-4">
+  <div class="bg-gray-100 rounded-lg flex justify-between items-center p-4 m-4">
     <p class="text-md text-gray-500">결제 금액</p>
     <p class="text-lg text-primary font-bold">18,000원</p>
   </div>
@@ -74,7 +74,7 @@ export default {
     <!--카드사 / 할부 드롭다운-->
     <div class="flex flex-col gap-2">
 <!--      <select class="bg-gray-100 rounded-lg p-4" v-model="selectedCardCompany">-->
-      <select class="bg-gray-100 rounded-lg p-3" v-model="selectedCardCompany">
+      <select class="bg-gray-100 rounded-lg p-4" v-model="selectedCardCompany">
 
         <option value="" disabled>카드사 선택</option>
         <option value="삼성카드">삼성카드</option>
@@ -84,7 +84,7 @@ export default {
 
 <!--      <select class="bg-gray-100 rounded-lg p-4" v-model="selectedInstallmentPlan">-->
 
-      <select class="bg-gray-100 rounded-lg p-3" v-model="selectedInstallmentPlan">
+      <select class="bg-gray-100 rounded-lg p-4" v-model="selectedInstallmentPlan">
 
         <option value="" disabled>할부 선택</option>
         <option value="일시불">일시불</option>
