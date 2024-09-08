@@ -23,36 +23,99 @@ export default {
       let prompt = "";
 
       // GPT 요청에 사용할 프롬프트 구성
-      if (chapterTitle === "이성이 보는 나의 매력과 분위기") {
-        prompt = `
-          챕터 제목: ${chapterTitle}
+      switch (chapterTitle) {
+        case "나의 사주명식":
+          prompt = `
+            챕터 제목: ${chapterTitle}
 
-          사용자 사주:
-          - 년도: ${userSaju.year}
-          - 월: ${userSaju.month}
-          - 일: ${userSaju.day}
-          - 시간: ${userSaju.time}
+             사용자 사주:
+            - 년도: ${userSaju.year}
+            - 월: ${userSaju.month}
+            - 일: ${userSaju.day}
+            - 시간: ${userSaju.time}
+            내 사주의 정보의 특징을 알려줘
+          `;
+          break;
+        case "이성이 보는 나의 매력과 분위기":
+          prompt = `
+            챕터 제목: ${chapterTitle}
 
-          상대방 사주:
-          - 년도: ${pSaju.year}
-          - 월: ${pSaju.month}
-          - 일: ${pSaju.day}
-          - 시간: ${pSaju.time}
+            사용자 사주:
+            - 년도: ${userSaju.year}
+            - 월: ${userSaju.month}
+            - 일: ${userSaju.day}
+            - 시간: ${userSaju.time}
 
-          상대방이 보는 사용자의 매력과 분위기를 설명해 주세요.
-        `;
-      } else if (chapterTitle === "연애운이 들어오는 3번의 시기") {
-        prompt = `
-          챕터 제목: ${chapterTitle}
+            상대방 사주:
+            - 년도: ${pSaju.year}
+            - 월: ${pSaju.month}
+            - 일: ${pSaju.day}
+            - 시간: ${pSaju.time}
 
-          사용자 사주:
-          - 년도: ${userSaju.year}
-          - 월: ${userSaju.month}
-          - 일: ${userSaju.day}
-          - 시간: ${userSaju.time}
+            상대방이 보는 사용자의 매력과 분위기를 설명해 주세요.
+          `;
+          break;
 
-          이 사용자가 앞으로 3번의 중요한 연애 시기를 맞이할 것입니다. 그 시기는 언제이며, 어떤 특징을 가질지 설명해 주세요.
-        `;
+        case "연애운이 들어오는 3번의 시기":
+          prompt = `
+            챕터 제목: ${chapterTitle}
+
+            사용자 사주:
+            - 년도: ${userSaju.year}
+            - 월: ${userSaju.month}
+            - 일: ${userSaju.day}
+            - 시간: ${userSaju.time}
+
+            이 사용자가 앞으로 3번의 중요한 연애 시기를 맞이할 것입니다. 그 시기는 언제이며, 어떤 특징을 가질지 설명해 주세요.
+          `;
+          break;
+
+        case "연애운을 연애 골든타임으로!":
+          prompt = `
+            챕터 제목: ${chapterTitle}
+
+            사용자 사주:
+            - 년도: ${userSaju.year}
+            - 월: ${userSaju.month}
+            - 일: ${userSaju.day}
+            - 시간: ${userSaju.time}
+
+            연애운이 들어오는 시기에 어떻게 하면 연애를 성공할 수 있을지 설명해줘.
+          `;
+          break;
+
+        case "그 사람의 마음을 사로잡는 비법":
+          prompt = `
+            챕터 제목: ${chapterTitle}
+
+             상대방 사주:
+            - 년도: ${pSaju.year}
+            - 월: ${pSaju.month}
+            - 일: ${pSaju.day}
+            - 시간: ${pSaju.time}
+
+          상대방의 사주를 바탕으로 그 사람의 마음을 사로잡는 방법에 대한 조언을 해주세요. 상대방의 성격, 관심사, 사랑하는 방식 등과 관련된 정보도 알려주시면 좋겠습니다. 이 사주를 기반으로 관계를 발전시킬 수 있는 구체적인 조언을 500자 이내로 부탁드립니다.
+          `;
+          break;
+
+        case "마지막으로 도화가 정하는 말":
+          prompt = `
+            챕터 제목: ${chapterTitle}
+
+             상대방 사주:
+            - 년도: ${pSaju.year}
+            - 월: ${pSaju.month}
+            - 일: ${pSaju.day}
+            - 시간: ${pSaju.time}
+
+            지금까지 나왔던 답변들을 최종적으로 요약해서 잘 될거다라는 좋은 말로 마무리 지어주세요
+
+          `;
+          break;
+
+        default:
+          console.error("알 수 없는 챕터 제목:", chapterTitle);
+          prompt = "유효하지 않은 챕터 제목입니다.";
       }
 
       try {
@@ -60,8 +123,8 @@ export default {
             "https://api.openai.com/v1/chat/completions",
             {
               model: "gpt-4",
-              messages: [{role: "user", content: prompt}],
-              max_tokens: 1000,
+              messages: [{ role: "user", content: prompt }],
+              max_tokens: 700,
               temperature: 0.7,
             },
             {
@@ -82,8 +145,8 @@ export default {
     async fetchSajuData() {
       try {
         const [userSajuResponse, pSajuResponse] = await Promise.all([
-          axios.get(`http://localhost:3000/my_infos/1/user_saju`),
-          axios.get(`http://localhost:3000/my_infos/1/p_saju`),
+          axios.get(`http://localhost:3001/my_infos/1/user_saju`),
+          axios.get(`http://localhost:3001/my_infos/1/p_saju`),
         ]);
         return {
           userSaju: userSajuResponse.data.user_saju,
@@ -105,8 +168,12 @@ export default {
       }
 
       const chapters = [
+        {id: 1, title: "나의 사주명식"},
         {id: 2, title: "이성이 보는 나의 매력과 분위기"},
         {id: 3, title: "연애운이 들어오는 3번의 시기"},
+        {id: 4, title: "연애운을 연애 골든타임으로!"},
+        {id: 5, title: "그 사람의 마음을 사로잡는 비법"},
+        {id: 6, title: "마지막으로 도화가 정하는 말"}
       ];
 
       await this.fetchGPTResults(sajuData.userSaju, sajuData.pSaju, chapters);
