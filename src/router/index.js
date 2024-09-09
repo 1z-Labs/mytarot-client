@@ -9,6 +9,7 @@ import paymentsMethodScreen from "@/views/paymentsMethodScreen.vue";
 import MyInfoResult from "@/views/MyInfoResult.vue";
 import HomeScreen from "@/views/HomeScreen.vue";
 import CategoryListDetailScreen from "@/views/CategoryListDetailScreen.vue";
+import ContentsDetailScreen from "@/views/ContentsDetailScreen.vue";
 
 const routes = [
     {
@@ -58,6 +59,11 @@ const routes = [
         name: 'CategoryListDetailScreen',
         component: CategoryListDetailScreen,
     },
+    {
+        path: '/contentsDetail',
+        name: 'contentsDetail',
+        component: ContentsDetailScreen,
+    }
 ]
 
 const router = createRouter({
