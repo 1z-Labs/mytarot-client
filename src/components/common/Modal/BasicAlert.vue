@@ -1,15 +1,13 @@
 <template>
   <div id="blind" v-if="show">
-    <!--    TODO: height 동적으로 어떻게 줄 건지?-->
     <div class=" container" v-if="show" :style="{ height: height + 'vh' }">
       <div class=" body">
-        <strong>{{"정말 나가시겠어요?"}}</strong>
+        <strong>{{ title }}</strong>
         <!--        TODO: 줄바꿈 처리 어떻게 할 건지?-->
-        <pre>{{"나가셔도 입력하신 정보가 저장되지 않아요.작성을 계속하시려면 이어서하기를 클릭해주세요."}}</pre>
+        <div v-html="bodyText"></div>
       </div>
       <div class=" footer">
-        <button class="btn no" @click="showAlert(), FuncNo()">{{btn1}}</button>
-        <button class="btn yes " @click="showAlert(), FuncYes()">{{btn2}}</button>
+        <button id="btn" @click="showAlert">{{btnText}}</button>
       </div>
     </div>
   </div>
@@ -17,35 +15,27 @@
 <script>
 export default {
   props : {
+    show: {
+      type:Boolean,
+      default: false,
+    },
     height: Number,
-    btn1 : String,
-    btn2  : String,
+    btnText : {
+      type: String,
+      default : "확인"
+    },
     title : String,
     bodyText : String,
-    FuncNo: {
+    ok: {
       type: Function,
-      default : () => console.log("취소")
     },
-    FuncYes: {
-      type: Function,
-      default : () => console.log("확인")
-    },
-  },
-  data(){
-    return{
-      show: true,
-    }
   },
   methods:{
     showAlert(){
-      this.show = false;
+      this.$emit('update:show', false);
     }
   },
-  computed: {
-    formattedBodyText() {
-      return this.bodyText.replace(/\n/g, '<br>'); // 줄바꿈 처리를 위해 <br> 태그 추가
-    },
-  },
+
 }
 </script>
 <style scoped>
@@ -53,6 +43,8 @@ export default {
   box-sizing: border-box;
 }
 #blind{
+  position: fixed;
+  top:0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +54,6 @@ export default {
 }
 .container{
   width: 85.3vw;
-  height: 25.6vh;
   background-color: #FFFFFF;
   border-radius: 16px;
   border : 1px solid #D9D9D9;
@@ -73,8 +64,9 @@ export default {
   flex-direction: column;
   align-items: center;
   row-gap: 12px;
-  margin: 46px 24.5px 0px 24.5px;
+  margin: 5.6vh 4vw 0px 4vw;
 }
+
 strong{
   font-size: 20px;
   font-weight: 700;
@@ -93,18 +85,17 @@ p{
   width: 100%;
   padding: 10px 15px 16px 15px;
 }
-.btn{
-  width: 37vw;
+#btn{
+  width: 85.3vw;
   height: 5.4vh;
-  border-radius: 8px;
-  border: none;
-}
-.no{
-  background-color: #D9D9D9;
-  color:#333333;
-}
-.yes{
   background-color: #1E2352;
-  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  color: white;
 }
+.blue_acc{
+
+}
+
 </style>
