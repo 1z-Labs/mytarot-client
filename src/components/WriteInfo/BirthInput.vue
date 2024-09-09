@@ -111,6 +111,7 @@ div {
 
 .header {
   justify-content: space-between;
+   margin-bottom: 8px;
 }
 
 .body {
