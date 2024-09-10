@@ -82,7 +82,7 @@ export default {
           prompt = `
             챕터 제목: ${chapterTitle}
 
-             상대방 사주:
+            상대방 사주:
             - 년도: ${pSaju.year}
             - 월: ${pSaju.month}
             - 일: ${pSaju.day}
