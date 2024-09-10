@@ -1,8 +1,8 @@
 <template>
   <ul>
     <li v-for="(item, idx) in menu" :key="idx">
-      <router-link :to="item.link" class="menu_item" @setCurrentMenu="currentMenu=item.name">
-          <img :src="item.icon" :class="{'active-icon': currentMenu === item.name, 'inactive-icon': currentMenu !== item.name}" alt=""/>
+      <router-link :to="item.link" class="menu_item" @click="setCurrentMenu(item.name)">
+        <img :src="item.icon" :class="{'active-icon': currentMenu === item.name, 'inactive-icon': currentMenu !== item.name}" alt=""/>
         <span :class="{'active-text': currentMenu === item.name, 'inactive-text': currentMenu !== item.name}">{{item.name}}</span>
       </router-link>
     </li>
@@ -11,6 +11,12 @@
 
 <script>
 export default {
+  props: {
+    currentMenu: {
+      type: String,
+      default: '홈'
+    }
+  },
   data(){
     return{
       menu: [
@@ -26,7 +32,7 @@ export default {
         },
         {
           name: "타로",
-          link: "/my_tarot",
+          link: "/resultcreate",
           icon: require(`@/assets/Home/menu/myTarot.svg`)
         },
         {
@@ -34,17 +40,18 @@ export default {
           link: "/mypage",
           icon: require(`@/assets/Home/menu/myPage.svg`)
         }
-      ],
-      currentMenu : '홈'
+      ]
     }
   },
   methods:{
-    setCurrentMenu(){
-      this.$emit('setCurrentMenu', this.currentMenu)
+    setCurrentMenu(menuName, menuIcon){
+      this.$emit('setCurrentMenu', menuName)
+      this.$emit('setCurrentIcon', menuIcon);
     }
   }
 }
 </script>
+
 <style scoped>
 ul{
   width: 100%;
@@ -84,6 +91,5 @@ span{
 .active-icon {
   filter: grayscale(0); /* 원래 색상 유지 */
 }
-
 
 </style>
