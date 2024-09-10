@@ -10,6 +10,7 @@ import MyInfoResult from "@/views/MyInfoResult.vue";
 import HomeScreen from "@/views/HomeScreen.vue";
 import CategoryListDetailScreen from "@/views/CategoryListDetailScreen.vue";
 import ContentsDetailScreen from "@/views/ContentsDetailScreen.vue";
+import WriteInfoStartScreen from "@/views/WriteInfoStartScreen.vue";
 
 const routes = [
     {
@@ -61,8 +62,13 @@ const routes = [
     },
     {
         path: '/contentsDetail',
-        name: 'contentsDetail',
+        name: 'ContentsDetail',
         component: ContentsDetailScreen,
+    },
+    {
+        path: '/writeInfoStart',
+        name: 'WriteInfoStart',
+        component: WriteInfoStartScreen,
     }
 ]
 

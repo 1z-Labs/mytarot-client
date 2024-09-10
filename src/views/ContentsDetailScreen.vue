@@ -179,7 +179,7 @@ div, span, ul, li{
 }
 button{
   width: 100%;
-  height:10.5vh;
+  height:7.6vh;
   background-color: #1E2352;
   color:white;
   font-size: 18px;
