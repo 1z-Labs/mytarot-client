@@ -15,7 +15,7 @@ export default {
       this.$router.go(-1)
     },
     start(){
-      this.$router.push('/writeInfo')
+      this.$router.push('/writeInfo/0')
     }
   }
 }
