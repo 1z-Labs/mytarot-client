@@ -1,14 +1,5 @@
 <template>
   <div style="display: flex; flex-direction: column; align-items: center">
-    <div class="header">
-      <img src="@/assets/WriteInfo/close.svg" alt='닫기버튼' id="close" @click="showConfirm = true"/>
-      <img src="@/assets/applogo.svg" alt='앱로고'/>
-      <div class="step">
-        <div class="step-bar"></div>
-        <div class="step-bar"></div>
-        <div class="step-bar"></div>
-      </div>
-    </div>
     <div class="title">
       <p> 첫번째 항목 </p>
       <span>헬리님의 정보를 확인해주세요</span>
@@ -25,10 +16,6 @@
         <horoscope-table/>
         <button @click="showAlert = true"><img src="@/assets/WriteInfo/help.svg" alt="도움버튼">알고 계신 사주간지와 다른가요? </button>
       </div>
-     <div class="btn-box">
-       <button class="btn cancel" @click="cancle">이전</button>
-       <button class="btn" @click="next">확인</button>
-     </div>
     </div>
   </div>
   <basic-alert v-model:show="showAlert" :title="'사주명식 계산안내'" :height=45.3 :bodyText="alertText"/>
@@ -86,17 +73,6 @@ export default {
 
 </script>
 <style scoped>
-.header{
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  height: 6.2vh;
-  width:100%;
-  position: relative;
-}
-.header img{
-  width: 24vw;
-}
 .body{
   width: 100%;
   display: flex;
@@ -119,29 +95,6 @@ export default {
 .title > span{
   font-size: 24px;
   font-weight: 700;
-}
-.btn-box{
-  position: fixed;
-  bottom: 16px;
-  width: 100%;
-  display: flex;
-  column-gap: 8px;
-  justify-content: center;
-}
-.btn{
-  width: 60.2vw;
-  height: 6.4vh;
-  background-color: #1E2352;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  color: white;
-}
-.cancel{
-  width: 24.8vw;
-  border:1.5px solid #1E2352;
-  background-color: white;
-  color: #1E2352;
 }
 #close{
   position: absolute;
@@ -198,7 +151,5 @@ export default {
   justify-content: center;
   column-gap: 4px;
 }
-
-
 
 </style>

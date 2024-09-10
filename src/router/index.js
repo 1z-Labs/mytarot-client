@@ -1,15 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue";
-import WriteInfoScreen from "@/views/WriteInfoScreen.vue";
+import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue"
 import PaymentScreen from "@/views/PaymentScreen.vue";
 import ResultAnswerScreen from "@/views/ResultAnswerScreen.vue";
 import ResultCreateScreen from "@/views/ResultCreateScreen.vue";
 import paymentsMethodScreen from "@/views/paymentsMethodScreen.vue";
-import MyInfoResult from "@/views/MyInfoResult.vue";
+import MyResultScreen from "@/views/MyResultScreen.vue";
 import HomeScreen from "@/views/HomeScreen.vue";
 import CategoryListDetailScreen from "@/views/CategoryListDetailScreen.vue";
 import DescriptionScreen from "@/views/descriptionScreen.vue";
+import ContentsDetailScreen from "@/views/ContentsDetailScreen.vue";
+import WriteInfoStartScreen from "@/views/WriteInfoStartScreen.vue";
+import WriteInfoWrapper from "@/components/WriteInfo/WriteInfoWrapper.vue";
 
 const routes = [
     {
@@ -30,9 +31,9 @@ const routes = [
         props: true
     },
     {
-        path: '/writeInfo',
-        name: 'WriteInfoScreen',
-        component: WriteInfoScreen
+      path: '/myresult',
+      name: 'MyResultScreen',
+      component: MyResultScreen,
     },
     {
         path: '/payments',
@@ -43,14 +44,9 @@ const routes = [
         path: '/paymentsMethod',
         name: 'paymentsMethodScreen',
         component: paymentsMethodScreen,
-    }
-    ,{
-        path: '/myinfoResult',
-        name: 'MyInfoResult',
-        component: MyInfoResult,
     },
     {
-        path: '/home',
+        path: '/',
         name: 'HomeScreen',
         component: HomeScreen,
     },
@@ -60,9 +56,26 @@ const routes = [
         component: CategoryListDetailScreen,
     },
     {
+
         path: '/inputDescription',
         name: 'DescriptionScreen',
         component: DescriptionScreen,
+    },
+    {
+        path: '/contentsDetail',
+        name: 'ContentsDetail',
+        component: ContentsDetailScreen,
+    },
+    {
+        path: '/writeInfo/:currentIndex',
+        name: 'WriteInfoScreen',
+        component: WriteInfoWrapper,
+        props: true,
+    },
+    {
+        path: '/writeInfoStart',
+        name: 'WriteInfoStart',
+        component: WriteInfoStartScreen,
     },
 ]
 

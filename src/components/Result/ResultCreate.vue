@@ -10,6 +10,7 @@ export default {
     };
   },
   methods: {
+
     // GPT API 요청을 처리하는 함수
     async fetchGPTResults(userSaju, pSaju, chapters) {
       for (const chapter of chapters) {
@@ -27,13 +28,6 @@ export default {
         case "나의 사주명식":
           prompt = `
             챕터 제목: ${chapterTitle}
-
-             사용자 사주:
-            - 년도: ${userSaju.year}
-            - 월: ${userSaju.month}
-            - 일: ${userSaju.day}
-            - 시간: ${userSaju.time}
-            내 사주의 정보의 특징을 알려줘
           `;
           break;
         case "이성이 보는 나의 매력과 분위기":
@@ -66,7 +60,7 @@ export default {
             - 일: ${userSaju.day}
             - 시간: ${userSaju.time}
 
-            이 사용자가 앞으로 3번의 중요한 연애 시기를 맞이할 것입니다. 그 시기는 언제이며, 어떤 특징을 가질지 설명해 주세요.
+            이 사용자가 앞으로 3번의 중요한 연애 시기를 맞이할 것입니다. 그 시기는 언제이며, 어떤 특징을 가질지 500자 이내로 설명해 주세요.
           `;
           break;
 
@@ -80,7 +74,7 @@ export default {
             - 일: ${userSaju.day}
             - 시간: ${userSaju.time}
 
-            연애운이 들어오는 시기에 어떻게 하면 연애를 성공할 수 있을지 설명해줘.
+            연애운이 들어오는 시기에 어떻게 하면 연애를 성공할 수 있을지 500자 이내로 설명해줘.
           `;
           break;
 
@@ -102,13 +96,13 @@ export default {
           prompt = `
             챕터 제목: ${chapterTitle}
 
-             상대방 사주:
+            상대방 사주:
             - 년도: ${pSaju.year}
             - 월: ${pSaju.month}
             - 일: ${pSaju.day}
             - 시간: ${pSaju.time}
 
-            지금까지 나왔던 답변들을 최종적으로 요약해서 잘 될거다라는 좋은 말로 마무리 지어주세요
+            지금까지 나왔던 답변들을 최종적으로 요약해서 잘 될거다라는 좋은 말을 500자 이내로 작성해주세요.
 
           `;
           break;
@@ -145,8 +139,10 @@ export default {
     async fetchSajuData() {
       try {
         const [userSajuResponse, pSajuResponse] = await Promise.all([
-          axios.get(`http://localhost:3001/my_infos/1/user_saju`),
-          axios.get(`http://localhost:3001/my_infos/1/p_saju`),
+          // axios.get(`http://34.64.230.160:3001/my_infos/1/user_saju`),
+          // axios.get(`http://34.64.230.160:3001/my_infos/1/p_saju`),
+          axios.get(`http://localhost:3000/my_infos/1/user_saju`),
+          axios.get(`http://localhost:3000/my_infos/1/p_saju`),
         ]);
         return {
           userSaju: userSajuResponse.data.user_saju,
@@ -201,8 +197,7 @@ export default {
     <button @click="createResults" :disabled="loading"
             class="bg-green-500 text-white font-medium py-2 px-6 rounded-md disabled:bg-gray-400 disabled:cursor-not-allowed">
       <span v-if="!loading">결과 생성하기</span>
-      <svg v-else class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
-           viewBox="0 0 24 24">
+      <svg v-else class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.937l3-2.646z"></path>

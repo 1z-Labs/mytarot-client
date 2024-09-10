@@ -6,7 +6,6 @@
         남성
         <input type="radio" value="남성" name="gender" v-model="selectedGender" />
       </label>
-
       <label :class="{ checked: selectedGender === '여성' }">
         여성
         <input type="radio" value="여성" name="gender" v-model="selectedGender" />
@@ -44,9 +43,7 @@ p{
   flex-direction: row;
   column-gap: 7px;
 }
-
 label {
-  display: block;
   width: 42.6vw;
   height: 5.9vh;
   background-color: #ececec;
