@@ -20,7 +20,7 @@
         <div class="bg-[#ECECEC] w-[87.2vw] mt-1 rounded flex justify-center gap-12 h-[4.9vh] items-center mx-auto">
           <p>{{ userInfo?.birthday }}</p>
           <p>{{ userSaju?.time }}</p>
-          <p>{{ userInfo?.gender }}</p>
+          <p>{{ userInfo?.gender === 0 ? '여자' : '남자' }}</p>
         </div>
         <img src="@/assets/Result/MyResultSep.svg" class="mt-2.5 w-[87.2vw] mx-auto"/>
 
@@ -91,6 +91,7 @@
 <script>
 import axios from "axios";
 import Modal from '@/components/Result/ResultBtnModal.vue'
+
 export default {
   name: "MyResult",
   components: {
@@ -104,16 +105,36 @@ export default {
       error: null,
       juList: ["시주", "일주", "월주", "년주"],
       buttonGanLabels: [
-        { label: '상관', meaning: '자신의 재능을 마음껏 뽐내는 삶', features: '총명, 특별한 재능, 부지런, 적극적, 논리적' },
-        { label: '일원', meaning: '나 자신을 나타내는 중요한 요소', features: '기본적인 성격, 성향, 그리고 인생에서의 역할을 파악할 수 있다.' },
-        { label: '정재', meaning: '규칙적이고 안정적인 재물', features: '안정적인 수입과 재물 관리를 의미하여 합리적인 재정관리를 통해 안정적인 재산을 축척한다.' },
-        { label: '편관', meaning: '도전과 경쟁, 불안정성의 의미를 가진다.', features: '강한 추진력과 결단력을 가지고 있으며, 도전적이고, 경쟁심이 강하고, 변동이 많으며, 예측 불가능한 상황에 잘 대응하고, 반항적인 성향이 있을 수 있다. ' }
+        {label: '상관', meaning: '자신의 재능을 마음껏 뽐내는 삶', features: '총명, 특별한 재능, 부지런, 적극적, 논리적'},
+        {label: '일원', meaning: '나 자신을 나타내는 중요한 요소', features: '기본적인 성격, 성향, 그리고 인생에서의 역할을 파악할 수 있다.'},
+        {label: '정재', meaning: '규칙적이고 안정적인 재물', features: '안정적인 수입과 재물 관리를 의미하여 합리적인 재정관리를 통해 안정적인 재산을 축척한다.'},
+        {
+          label: '편관',
+          meaning: '도전과 경쟁, 불안정성의 의미를 가진다.',
+          features: '강한 추진력과 결단력을 가지고 있으며, 도전적이고, 경쟁심이 강하고, 변동이 많으며, 예측 불가능한 상황에 잘 대응하고, 반항적인 성향이 있을 수 있다. '
+        }
       ],
       buttonJiLabels: [
-        { label: '편인', meaning: '창조적 사고와 독립성, 예술과 직관의 의미를 가진다.', features: '창의적이고 직관적이며, 독립적이고, 예술적 감각이 뛰어나며, 고독을 즐기고, 일반적인 틀에 얽매이지 않으며, 다른 사람들과 다소 다른 관점을 가진다.' },
-        { label: '편관', meaning: '도전과 경쟁, 불안정성의 의미를 가진다.', features: '강한 추진력과 결단력을 가지고 있으며, 도전적이고, 경쟁심이 강하고, 변동이 많으며, 예측 불가능한 상황에 잘 대응하고, 반항적인 성향이 있을 수 있다. ' },
-        { label: '편인', meaning: '창조적 사고와 독립성, 예술과 직관의 의미를 가진다.', features: '창의적이고 직관적이며, 독립적이고, 예술적 감각이 뛰어나며, 고독을 즐기고, 일반적인 틀에 얽매이지 않으며, 다른 사람들과 다소 다른 관점을 가진다.' },
-        { label: '식신', meaning: '창조와 생산, 풍요와 안락함의 의미를 가진다.', features: '창의력이 뛰어나고 생산적이며, 안정적인 생활을 추구하고, 관대하며, 여유롭고, 실용적인 성향이 있다.' }
+        {
+          label: '편인',
+          meaning: '창조적 사고와 독립성, 예술과 직관의 의미를 가진다.',
+          features: '창의적이고 직관적이며, 독립적이고, 예술적 감각이 뛰어나며, 고독을 즐기고, 일반적인 틀에 얽매이지 않으며, 다른 사람들과 다소 다른 관점을 가진다.'
+        },
+        {
+          label: '편관',
+          meaning: '도전과 경쟁, 불안정성의 의미를 가진다.',
+          features: '강한 추진력과 결단력을 가지고 있으며, 도전적이고, 경쟁심이 강하고, 변동이 많으며, 예측 불가능한 상황에 잘 대응하고, 반항적인 성향이 있을 수 있다. '
+        },
+        {
+          label: '편인',
+          meaning: '창조적 사고와 독립성, 예술과 직관의 의미를 가진다.',
+          features: '창의적이고 직관적이며, 독립적이고, 예술적 감각이 뛰어나며, 고독을 즐기고, 일반적인 틀에 얽매이지 않으며, 다른 사람들과 다소 다른 관점을 가진다.'
+        },
+        {
+          label: '식신',
+          meaning: '창조와 생산, 풍요와 안락함의 의미를 가진다.',
+          features: '창의력이 뛰어나고 생산적이며, 안정적인 생활을 추구하고, 관대하며, 여유롭고, 실용적인 성향이 있다.'
+        }
       ],
       sajuItems: [],
       isModalVisible: false,
@@ -205,7 +226,6 @@ export default {
   }
 };
 </script>
-
 
 
 <style scoped>
