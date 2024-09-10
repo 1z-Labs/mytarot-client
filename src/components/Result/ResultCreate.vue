@@ -139,10 +139,8 @@ export default {
     async fetchSajuData() {
       try {
         const [userSajuResponse, pSajuResponse] = await Promise.all([
-          // axios.get(`http://34.64.230.160:3001/my_infos/1/user_saju`),
-          // axios.get(`http://34.64.230.160:3001/my_infos/1/p_saju`),
-          axios.get(`http://localhost:3000/my_infos/1/user_saju`),
-          axios.get(`http://localhost:3000/my_infos/1/p_saju`),
+          axios.get(`http://34.64.230.160:3001/my_infos/1/user_saju`),
+          axios.get(`http://34.64.230.160:3001/my_infos/1/p_saju`),
         ]);
         return {
           userSaju: userSajuResponse.data.user_saju,
@@ -187,21 +185,24 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center h-screen">
-    <!-- 로고 이미지 -->
-    <div class="mb-5">
-      <img src="@/assets/applogo.svg" class="w-36"/> <!-- Tailwind로 크기 조정 -->
-    </div>
+<!--  <div class="flex flex-col items-center justify-center h-screen">-->
+<!--    &lt;!&ndash; 로고 이미지 &ndash;&gt;-->
+<!--    <div class="mb-5">-->
+<!--      <img src="@/assets/applogo.svg" class="w-36"/> &lt;!&ndash; Tailwind로 크기 조정 &ndash;&gt;-->
+<!--    </div>-->
 
     <!-- 버튼 (결과 생성하기 or 로딩 중) -->
-    <button @click="createResults" :disabled="loading"
-            class="bg-green-500 text-white font-medium py-2 px-6 rounded-md disabled:bg-gray-400 disabled:cursor-not-allowed">
-      <span v-if="!loading">결과 생성하기</span>
-      <svg v-else class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.937l3-2.646z"></path>
-      </svg>
-    </button>
+<!--    <button @click="createResults" :disabled="loading"-->
+<!--            class="bg-green-500 text-white font-medium py-2 px-6 rounded-md disabled:bg-gray-400 disabled:cursor-not-allowed">-->
+<!--      <span v-if="!loading">결과 생성하기</span>-->
+<!--      <svg v-else class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">-->
+<!--        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>-->
+<!--        <path class="opacity-75" fill="currentColor"-->
+<!--              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.937l3-2.646z"></path>-->
+<!--      </svg>-->
+<!--    </button>-->
+<!--  </div>-->
+  <div class="w-[87.2vw]">
+    <img src="@/assets/Result/ResultCreate.jpg" class="h-[100px]"/>
   </div>
 </template>
