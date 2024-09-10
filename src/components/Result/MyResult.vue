@@ -150,8 +150,8 @@ export default {
     async fetchMyData() {
       try {
         const [userSajuResponse, userInfoResponse] = await Promise.all([
-          axios.get(`http://localhost:3000/my_infos/1/user_saju`),
-          axios.get(`http://localhost:3000/my_infos/1/non_p_fields`),
+          axios.get(`http://34.64.230.160:3001/my_infos/1/user_saju`),
+          axios.get(`http://34.64.230.160:3001/my_infos/1/non_p_fields`),
         ]);
 
         this.userSaju = userSajuResponse.data.user_saju;

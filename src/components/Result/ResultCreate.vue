@@ -117,7 +117,7 @@ export default {
             "https://api.openai.com/v1/chat/completions",
             {
               model: "gpt-4",
-              messages: [{ role: "user", content: prompt }],
+              messages: [{role: "user", content: prompt}],
               max_tokens: 700,
               temperature: 0.7,
             },
@@ -185,24 +185,32 @@ export default {
 </script>
 
 <template>
-<!--  <div class="flex flex-col items-center justify-center h-screen">-->
-<!--    &lt;!&ndash; 로고 이미지 &ndash;&gt;-->
-<!--    <div class="mb-5">-->
-<!--      <img src="@/assets/applogo.svg" class="w-36"/> &lt;!&ndash; Tailwind로 크기 조정 &ndash;&gt;-->
-<!--    </div>-->
 
-    <!-- 버튼 (결과 생성하기 or 로딩 중) -->
-<!--    <button @click="createResults" :disabled="loading"-->
-<!--            class="bg-green-500 text-white font-medium py-2 px-6 rounded-md disabled:bg-gray-400 disabled:cursor-not-allowed">-->
-<!--      <span v-if="!loading">결과 생성하기</span>-->
-<!--      <svg v-else class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">-->
-<!--        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>-->
-<!--        <path class="opacity-75" fill="currentColor"-->
-<!--              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.937l3-2.646z"></path>-->
-<!--      </svg>-->
-<!--    </button>-->
-<!--  </div>-->
-  <div class="w-[87.2vw]">
-    <img src="@/assets/Result/ResultCreate.jpg" class="h-[100px]"/>
+  <div class=" flex text-center justify-center relative mt-2">
+    <div class="wrapContent w-[93vw] h-[18vh] rounded-xl">
+      <button @click="createResults" :disabled="loading"
+              class="absolute mt-6 ml-28 bg-[#4768A8] flex text-white font-medium py-2 px-5 rounded-3xl disabled:bg-gray-400 disabled:cursor-not-allowed">
+        <span v-if="!loading">해석하기</span>
+        <svg v-else class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.937l3-2.646z"></path>
+        </svg>
+      </button>
+      <img src="@/assets/Result/ResultCreate.jpg" class="h-[12vh] m-5 mt-6 absolute"/>
+      <p class="title text-[15px] text-gray-600 text-left m-[62px] ml-28">그 사람도 좋아할까? <br> 짝사랑이 이뤄지는 사주비책</p>
+    </div>
   </div>
 </template>
+
+
+<style>
+.title{
+  line-height: 140%;
+}
+
+.wrapContent{
+  border: 0.5px solid #CCCCCC;
+  box-shadow: 0px 1px 3px #D9D9D9;
+}
+</style>
