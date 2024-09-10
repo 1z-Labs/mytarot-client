@@ -7,6 +7,9 @@ import ResultAnswerScreen from "@/views/ResultAnswerScreen.vue";
 import ResultCreateScreen from "@/views/ResultCreateScreen.vue";
 import paymentsMethodScreen from "@/views/paymentsMethodScreen.vue";
 import MyResultScreen from "@/views/MyResultScreen.vue";
+import MyInfoResult from "@/views/MyInfoResult.vue";
+import HomeScreen from "@/views/HomeScreen.vue";
+import CategoryListDetailScreen from "@/views/CategoryListDetailScreen.vue";
 
 const routes = [
     {
@@ -40,11 +43,27 @@ const routes = [
         path: '/payments',
         name: 'PaymentsScreen',
         component: PaymentScreen,
-    },{
+    },
+    {
         path: '/paymentsMethod',
         name: 'paymentsMethodScreen',
         component: paymentsMethodScreen,
     }
+    ,{
+        path: '/myinfoResult',
+        name: 'MyInfoResult',
+        component: MyInfoResult,
+    },
+    {
+        path: '/home',
+        name: 'HomeScreen',
+        component: HomeScreen,
+    },
+    {
+        path: '/categoryDetail',
+        name: 'CategoryListDetailScreen',
+        component: CategoryListDetailScreen,
+    },
 ]
 
 const router = createRouter({

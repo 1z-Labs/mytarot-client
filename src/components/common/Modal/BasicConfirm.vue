@@ -3,11 +3,11 @@
     <div class=" container" v-if="show" :style="{ height: height + 'vh' }">
       <div class=" body">
         <strong>{{ title }}</strong>
-        <!--        TODO: 줄바꿈 처리 어떻게 할 건지?-->
-        <div v-html="bodyText"></div>
+        <div v-html="bodyText" class="body_text"></div>
       </div>
       <div class=" footer">
-        <button id="btn" @click="showAlert">{{btnText}}</button>
+        <button class="btn no" @click="handleNo">{{btn1}}</button>
+        <button class="btn yes " @click="handleYes">{{btn2}}</button>
       </div>
     </div>
   </div>
@@ -20,20 +20,29 @@ export default {
       default: false,
     },
     height: Number,
-    btnText : {
-      type: String,
-      default : "확인"
-    },
+    btn1 : String,
+    btn2  : String,
     title : String,
     bodyText : String,
-    ok: {
+    FuncNo: {
       type: Function,
+      default : () => console.log("취소")
+    },
+    FuncYes: {
+      type: Function,
+      default : () => console.log("확인")
     },
   },
+  emits: ['update:show'],
   methods:{
-    showAlert(){
+    handleNo() {
       this.$emit('update:show', false);
-    }
+      this.FuncNo();
+    },
+    handleYes() {
+      this.$emit('update:show', false);
+      this.FuncYes();
+    },
   },
 
 }
@@ -54,6 +63,7 @@ export default {
 }
 .container{
   width: 85.3vw;
+  height: 25.6vh;
   background-color: #FFFFFF;
   border-radius: 16px;
   border : 1px solid #D9D9D9;
@@ -64,9 +74,15 @@ export default {
   flex-direction: column;
   align-items: center;
   row-gap: 12px;
-  margin: 5.6vh 4vw 0px 4vw;
+  margin: 5.6vh 6.5vw 0px 6.5vw;
 }
-
+.body_text{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: center;
+  color: #555555;
+}
 strong{
   font-size: 20px;
   font-weight: 700;
@@ -83,19 +99,20 @@ p{
   display: flex;
   justify-content: space-around;
   width: 100%;
-  padding: 10px 15px 16px 15px;
+  padding: 10px 15px 1.9vh 15px;
 }
-#btn{
-  width: 85.3vw;
+.btn{
+  width: 37vw;
   height: 5.4vh;
-  background-color: #1E2352;
-  border: none;
   border-radius: 8px;
-  font-size: 16px;
-  color: white;
+  border: none;
 }
-.blue_acc{
-
+.no{
+  background-color: #D9D9D9;
+  color:#333333;
 }
-
+.yes{
+  background-color: #1E2352;
+  color: #FFFFFF;
+}
 </style>
