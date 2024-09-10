@@ -46,7 +46,7 @@ const routes = [
         component: paymentsMethodScreen,
     },
     {
-        path: '/home',
+        path: '/',
         name: 'HomeScreen',
         component: HomeScreen,
     },
