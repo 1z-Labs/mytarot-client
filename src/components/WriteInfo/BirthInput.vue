@@ -34,6 +34,7 @@ export default {
     };
   },
   methods: {
+    //TODO: input을 각각 검증하기 (년 - 1900~현재 ,월 - 1~12, 일 - 1~31)
     setBolder(index) { // 포커스가 들어왔을 때 테두리 변경
       this.$refs.inputs[index].style.outline = 'none';
 
@@ -111,6 +112,7 @@ div {
 
 .header {
   justify-content: space-between;
+   margin-bottom: 8px;
 }
 
 .body {

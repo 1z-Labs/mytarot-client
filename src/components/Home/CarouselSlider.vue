@@ -20,7 +20,6 @@
         <p>{{ slides.length }} <img src="../../assets/Home/slider.svg" alt="슬라이더버튼"/></p>
       </div>
   </swiper>
-
   </div>
 </template>
 
@@ -29,7 +28,6 @@ import { Autoplay, Pagination, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css';
-
 
 export default {
   emits: ['swiper', 'slideChange'],
@@ -51,9 +49,7 @@ export default {
           image: require(`@/assets/Home/image.png`),
         },
       ],
-
       modules: [ Pagination, Autoplay, A11y],
-
     };
   },
   methods: {

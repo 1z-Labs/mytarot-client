@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue";
 import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue"
 import WriteInfoScreen from "@/views/WriteInfoScreen.vue";
 import PaymentScreen from "@/views/PaymentScreen.vue";
@@ -10,6 +11,10 @@ import MyResultScreen from "@/views/MyResultScreen.vue";
 import MyInfoResult from "@/views/MyInfoResult.vue";
 import HomeScreen from "@/views/HomeScreen.vue";
 import CategoryListDetailScreen from "@/views/CategoryListDetailScreen.vue";
+import ContentsDetailScreen from "@/views/ContentsDetailScreen.vue";
+import WriteInfoStartScreen from "@/views/WriteInfoStartScreen.vue";
+import WriteInfoWrapper from "@/components/WriteInfo/WriteInfoWrapper.vue";
+
 
 const routes = [
     {
@@ -30,6 +35,7 @@ const routes = [
         props: true
     },
     {
+
       path: '/myresult',
       name: 'MyResultScreen',
       component: MyResultScreen,
@@ -40,6 +46,7 @@ const routes = [
         component: WriteInfoScreen
     },
     {
+
         path: '/payments',
         name: 'PaymentsScreen',
         component: PaymentScreen,
@@ -48,11 +55,6 @@ const routes = [
         path: '/paymentsMethod',
         name: 'paymentsMethodScreen',
         component: paymentsMethodScreen,
-    }
-    ,{
-        path: '/myinfoResult',
-        name: 'MyInfoResult',
-        component: MyInfoResult,
     },
     {
         path: '/home',
@@ -63,6 +65,22 @@ const routes = [
         path: '/categoryDetail',
         name: 'CategoryListDetailScreen',
         component: CategoryListDetailScreen,
+    },
+    {
+        path: '/contentsDetail',
+        name: 'ContentsDetail',
+        component: ContentsDetailScreen,
+    },
+    {
+        path: '/writeInfo/:currentIndex',
+        name: 'WriteInfoScreen',
+        component: WriteInfoWrapper,
+        props: true,
+    },
+    {
+        path: '/writeInfoStart',
+        name: 'WriteInfoStart',
+        component: WriteInfoStartScreen,
     },
 ]
 
