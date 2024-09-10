@@ -2,6 +2,7 @@
 import Paging from './ResultPaging.vue';
 import AppHeader from "@/components/common/AppHeader.vue";
 import MyResult from "@/components/Result/MyResult.vue";
+
 export default {
   name: "ResultAnswer",
   components: {
@@ -76,7 +77,16 @@ export default {
           <li v-for="(result, index) in gptResults" :key="index" class="text-[16px] mt-5">
             <img src="@/assets/Result/seprateHr.svg" class="w-[87.2vw]"/>
             <p class="text-[#999999] text-[12px] mt-5 ml-4">Chapter {{ index + 1 }}</p>
-            <button @click="goToChapter(index + 1)" class="ml-4">{{ result.title }}</button>
+            <!-- 챕터 제목 옆에 시작 페이지 번호 표시 -->
+            <button @click="goToChapter(index + 1)" class="ml-4 flex justify-between w-full items-center">
+              {{ result.title }}
+              <span class="flex justify-end ml-[24px] mr-8 text-[#777]">
+                  {{ (index + 1) * 2 }}
+                <img src="@/assets/Result/ResultChapterArr.svg" class="relative top-[-4px]"/>
+  </span>
+            </button>
+
+
           </li>
           <img src="@/assets/Result/seprateHr.svg" class="w-[87.2vw] mt-5"/>
         </ul>
