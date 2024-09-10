@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue";
+import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue"
 import WriteInfoScreen from "@/views/WriteInfoScreen.vue";
 import PaymentScreen from "@/views/PaymentScreen.vue";
 import ResultAnswerScreen from "@/views/ResultAnswerScreen.vue";
 import ResultCreateScreen from "@/views/ResultCreateScreen.vue";
 import paymentsMethodScreen from "@/views/paymentsMethodScreen.vue";
+import MyResultScreen from "@/views/MyResultScreen.vue";
 import MyInfoResult from "@/views/MyInfoResult.vue";
 import HomeScreen from "@/views/HomeScreen.vue";
 import CategoryListDetailScreen from "@/views/CategoryListDetailScreen.vue";
@@ -27,6 +28,11 @@ const routes = [
         name: 'ResultAnswerScreen',
         component: ResultAnswerScreen,
         props: true
+    },
+    {
+      path: '/myresult',
+      name: 'MyResultScreen',
+      component: MyResultScreen,
     },
     {
         path: '/writeInfo',
