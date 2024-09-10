@@ -7,10 +7,10 @@ import paymentsMethodScreen from "@/views/paymentsMethodScreen.vue";
 import MyResultScreen from "@/views/MyResultScreen.vue";
 import HomeScreen from "@/views/HomeScreen.vue";
 import CategoryListDetailScreen from "@/views/CategoryListDetailScreen.vue";
+import DescriptionScreen from "@/views/descriptionScreen.vue";
 import ContentsDetailScreen from "@/views/ContentsDetailScreen.vue";
 import WriteInfoStartScreen from "@/views/WriteInfoStartScreen.vue";
 import WriteInfoWrapper from "@/components/WriteInfo/WriteInfoWrapper.vue";
-
 
 const routes = [
     {
@@ -54,6 +54,12 @@ const routes = [
         path: '/categoryDetail',
         name: 'CategoryListDetailScreen',
         component: CategoryListDetailScreen,
+    },
+    {
+
+        path: '/inputDescription',
+        name: 'DescriptionScreen',
+        component: DescriptionScreen,
     },
     {
         path: '/contentsDetail',
