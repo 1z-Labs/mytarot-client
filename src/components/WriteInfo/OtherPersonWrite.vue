@@ -46,8 +46,40 @@ export default {
         placeholder="상대방을 어떻게 불러드릴까요?"
     />
   </div>
-  <button @click="saveInfo">저장</button>
 </template>
 
 <style scoped>
+
+.title{
+  display: flex;
+  flex-direction: column;
+  margin-top: 42px;
+  width: 85.3vw;
+}
+.title > p{
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom:8px;
+}
+.title > span{
+  font-size: 24px;
+  font-weight: 700;
+}
+.nameInput{
+  box-sizing: border-box;
+  width:87.2vw;
+  height: 5.9vh;
+  border-radius: 8px;
+  background-color: #F5F5F5;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  color: #333333
+}
+.nameInput:focus{
+  font-size: 18px;
+  color: #BDBDBD;
+  outline:2px solid #242424;
+}
 </style>

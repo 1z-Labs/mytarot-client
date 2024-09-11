@@ -23,7 +23,7 @@
       <p class="text-right text-sm text-gray-500">{{ inputText.length }}/100</p>
     </div>
 
-    <button class="fixed bottom-0 left-0 right-0 bg-primary text-white text-lg font-bold rounded-lg m-4 p-4" @click="handleButtonClick">완료</button>
+
   </div>
 </template>
 
@@ -44,9 +44,12 @@ export default {
 </script>
 
 <style scoped>
+/*
 .step-bar {
   width: 33%;
   height: 2px;
-  background-color: #1E2352; /* primary 컬러 */
+  background-color: #1E2352;
 }
+*/
+
 </style>
