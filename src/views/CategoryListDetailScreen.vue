@@ -1,19 +1,19 @@
 <template>
   <div class="con">
     <div class="header">
-      <img src="@/assets/backBtn.svg" alt='뒤로가기'/>
+      <img src="@/assets/backBtn.svg" alt='뒤로가기' @click="this.$router.push(`/`);"/>
       <span>{{ category }}</span>
     </div>
     <div class="body">
       <span v-if="contents && contents.length">총{{ contents.length }}개</span>
       <div class="content_con">
-        <router-link to='/contentsDetail' class="content" v-for="(item, idx) in contents" :key="idx" alt="">
+        <div class="content" v-for="(item, idx) in contents" :key="idx" @click="go(idx)">
           <img :src="item.img" alt=""/>
           <div class="text">
             <h1>{{ item.title }}</h1>
             <p>{{  item.description }}</p>
           </div>
-        </router-link>
+        </div>
       </div>
 
     </div>
@@ -25,6 +25,7 @@ export default {
     return {
       category: '전문사주',
       contents: [],
+      clickedContent: null,
     }
   },
   created() {
@@ -75,6 +76,15 @@ export default {
         img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
       },
     ]
+  },
+  methods:{
+   go(idx){
+     this.clickedContent = idx;
+     this.updateRoute();
+   },
+    updateRoute() {
+      this.$router.push({path: `/contentsDetail/${this.clickedContent}`});
+    },
   }
 }
 </script>
@@ -105,7 +115,7 @@ div, span, ul, li{
 }
 .body{
   width: 100%;
-  padding: 0px 16px 50px 16px;
+  padding: 0 16px 50px 16px;
   padding-top: calc(7.8vh + 20px);
 }
 .body > span{

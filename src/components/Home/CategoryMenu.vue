@@ -1,7 +1,7 @@
 <template>
   <ul class="con">
     <li v-for="(item, idx) in categoryMenu" :key="idx" @click="go(item.icon)">
-      <img :src="item.image" alt="카테고리 이미지"/>
+      <img :src="item.image" alt="카테고리 이미지" />
       <span>{{ item.icon }}</span>
     </li>
   </ul>

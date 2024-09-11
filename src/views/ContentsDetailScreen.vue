@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="header">
-    <img src="@/assets/backBtn.svg" alt='뒤로가기'/>
+    <img src="@/assets/backBtn.svg" alt='뒤로가기' @click="this.$router.push(`/`);"/>
     <span>콘텐츠 상세 설명</span>
   </div>
   <div class="body">

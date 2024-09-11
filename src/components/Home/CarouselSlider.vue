@@ -11,7 +11,7 @@
     >
       <swiper-slide v-for="(slide, index) in slides" :key="index" class="slide">
         <div class="carousel-content">
-          <img :src="slide.image" alt="슬라이드 이미지" />
+          <img :src="slide.image" alt="슬라이드 이미지" @click="this.$router.push({path: `/contentsDetail/${this.currentPage}`});" />
         </div>
       </swiper-slide>
       <div class="pagination-indicator">
@@ -41,21 +41,23 @@ export default {
       slides: [
         {
           image: require(`@/assets/Home/image.png`),
-        },
-        {
-          image: require(`@/assets/Home/slider.svg`),
+          id:0,
         },
         {
           image: require(`@/assets/Home/image.png`),
+          id:0,
+        },
+        {
+          image: require(`@/assets/Home/image.png`),
+          id:0,
         },
       ],
-      modules: [ Pagination, Autoplay, A11y],
+      modules: [Pagination, Autoplay, A11y],
     };
   },
   methods: {
     onSlideChange(swiper) {
       this.currentPage = swiper.activeIndex;
-      console.log(this.currentPage)
     },
   },
 
@@ -97,6 +99,7 @@ export default {
 .pagination-indicator img{
   width: 3.2vw;
   height: 1.4vh;
+  object-fit:cover;
 }
 .pagination-indicator p:last-child{
   display: flex;

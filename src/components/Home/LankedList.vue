@@ -12,13 +12,13 @@
           :pagination="{ clickable: true, el:null }"
           @slideChange="onSlideChange"
           :spaceBetween="0"
-          :centeredSlides="true"
+
           :modules="modules"
           class="swiper"
       >
-        <swiper-slide v-for="(slide, idx) in bestCategory.length" :key="idx" class="slide">
-          <div class="slide-item" v-for="(item, idx) in 3" :key="idx">
-              <span>{{idx+1}}</span>
+        <swiper-slide v-for="(i) in 3" :key="i" class="slide">
+          <div class="slide-item" v-for="(j) in 3" :key="j">
+              <span>{{ (i - 1) * 3 + j }}</span>
               <img src="@/assets/Home/lank/6_thumbnail_2.jpg" alt=""/>
               <div class="text">
                 <h1>오늘, 내 맘속 그사람의 속마음?</h1>

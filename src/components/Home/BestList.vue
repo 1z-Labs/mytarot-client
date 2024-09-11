@@ -2,16 +2,31 @@
   <div class="con">
     <div class="header">
       <h1>❤️ 솔로탈출 BEST 💗</h1>
-      <router-link to="/detailscreen">
-      <img src="@/assets/Home/detail_arrow.svg" alt="상세페이지보기 버튼"/>
-      </router-link>
+      <img src="@/assets/Home/detail_arrow.svg" alt="상세페이지보기 버튼" @click="this.$router.push({path: `/categoryDetail/${this.category}`});"/>
     </div>
     <div class="body">
-      <img src="@/assets/Home/lank/6_thumbnail_2.jpg" v-for="idx in 4" :key="idx" alt="사주콘텐츠" />
+      <img src="@/assets/Home/lank/6_thumbnail_2.jpg" v-for="idx in 4" :key="idx" alt="사주콘텐츠" @click="go(idx)"/>
     </div>
   </div>
 </template>
 <script>
+export default{
+  data(){
+    return{
+      category : '솔로탈출',
+      clickedContent: null,
+    }
+  },
+  methods:{
+    go(idx){
+      this.clickedContent = idx;
+      this.updateRoute()
+    },
+    updateRoute() {
+      this.$router.push({path: `/contentsDetail/${this.clickedContent}`});
+    },
+  }
+}
 
 </script>
 <style scoped>
