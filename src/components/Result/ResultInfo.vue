@@ -13,16 +13,22 @@ export default {
       router.push({ path: '/resultChapter/0' });
     };
 
+    const handleExitBtn = () =>{
+      router.go(-1)
+    }
+
     return {
       gptResults,
       handleImg,
+      handleExitBtn
     };
   }
 };
 </script>
 
 <template>
-  <div>
+  <div class="relative">
+    <img src="@/assets/WriteInfo/exitButton.svg" class="absolute mt-[72px] ml-4" @click="handleExitBtn"/>
     <img src="@/assets/Result/ResultInfo.jpg" @click="handleImg">
   </div>
 </template>

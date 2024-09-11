@@ -1,11 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router'
-
-import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue";
-import WriteInfoScreen from "@/views/WriteInfoScreen.vue";
+import {createRouter, createWebHistory} from 'vue-router'
+import ResultlInfoScreen from "@/views/ResultlInfoScreen.vue"
 import PaymentScreen from "@/views/PaymentScreen.vue";
 import ResultAnswerScreen from "@/views/ResultAnswerScreen.vue";
 import ResultCreateScreen from "@/views/ResultCreateScreen.vue";
 import paymentsMethodScreen from "@/views/paymentsMethodScreen.vue";
+import MyResultScreen from "@/views/MyResultScreen.vue";
+import HomeScreen from "@/views/HomeScreen.vue";
+import CategoryListDetailScreen from "@/views/CategoryListDetailScreen.vue";
+import DescriptionScreen from "@/views/descriptionScreen.vue";
+import ContentsDetailScreen from "@/views/ContentsDetailScreen.vue";
+import WriteInfoStartScreen from "@/views/WriteInfoStartScreen.vue";
+import WriteInfoWrapper from "@/components/WriteInfo/WriteInfoWrapper.vue";
 
 const routes = [
     {
@@ -17,7 +22,7 @@ const routes = [
         path: '/resultCreate',  // 첫 페이지는 목차
         name: 'ResultCreateScreen',
         component: ResultCreateScreen,
-        props: { default: true },
+        props: {default: true},
     },
     {
         path: '/resultChapter/:chapterIndex',  // 이후 페이지는 chapterIndex로 구분
@@ -26,19 +31,52 @@ const routes = [
         props: true
     },
     {
-        path: '/writeInfo',
-        name: 'WriteInfoScreen',
-        component: WriteInfoScreen
+        path: '/myresult',
+        name: 'MyResultScreen',
+        component: MyResultScreen,
     },
     {
         path: '/payments',
         name: 'PaymentsScreen',
         component: PaymentScreen,
-    },{
+    },
+    {
         path: '/paymentsMethod',
         name: 'paymentsMethodScreen',
         component: paymentsMethodScreen,
-    }
+    },
+    {
+        path: '/',
+        name: 'HomeScreen',
+        component: HomeScreen,
+    },
+    {
+        path: '/categoryDetail',
+        name: 'CategoryListDetailScreen',
+        component: CategoryListDetailScreen,
+    },
+    {
+
+        path: '/inputDescription',
+        name: 'DescriptionScreen',
+        component: DescriptionScreen,
+    },
+    {
+        path: '/contentsDetail',
+        name: 'ContentsDetail',
+        component: ContentsDetailScreen,
+    },
+    {
+        path: '/writeInfo/:currentIndex',
+        name: 'WriteInfoScreen',
+        component: WriteInfoWrapper,
+        props: true,
+    },
+    {
+        path: '/writeInfoStart',
+        name: 'WriteInfoStart',
+        component: WriteInfoStartScreen,
+    },
 ]
 
 const router = createRouter({

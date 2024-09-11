@@ -1,13 +1,27 @@
 <script>
+import {useRouter} from "vue-router";
+
 export default {
   name: "paymentsMethodScreen",
   data() {
     return {
-      selectedPaymentMethod: "", // 선택된 결제수단
+      selecteddPaymentMethod: "", // 선택된 결제수단
       selectedCardCompany: "", // 선택된 카드사
       selectedInstallmentPlan: "", // 선택된 할부 옵션
       isTermsExpanded: false, // 약관 리스트의 상태
     };
+  },
+  setup(){
+    const router = useRouter();
+
+    const handleButtonClick = () =>{
+      alert("결제가 완료되었습니다.")
+      router.push({ path: '/resultcreate' });
+
+    }
+    return{
+      handleButtonClick
+    }
   },
   methods: {
     handlePaymentMethod(method) {
@@ -17,9 +31,6 @@ export default {
     toggleTerms() {
       this.isTermsExpanded = !this.isTermsExpanded;
     },
-    handleButtonClick() {
-      console.log("button is Clicked!");
-    }
   }
 }
 </script>

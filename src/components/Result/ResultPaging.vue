@@ -35,8 +35,8 @@ export default {
 <template>
   <div class="flex justify-between items-center w-full h-[60px] bg-gray-100">
     <div class="m-4 flex">
-      <img src="@/assets/Result/chapterList.svg" alt="chapterList" class="mr-1"/>
-      <p>{{ current + 1 }} / {{ total }}</p>
+      <img src="@/assets/Result/chapterList.svg" alt="chapterList" class="mr-1 mt-[1px]"/>
+      <p class="mt-1.5">{{ current + 1 }} / {{ total }}</p>
     </div>
 
     <div class="flex items-center">
