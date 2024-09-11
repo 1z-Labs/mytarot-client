@@ -59,9 +59,11 @@ export default {
         case 2:
           return OtherPersonWrite;
         case 3:
-              return OtherPersonInfo;
-        default:
+          return OtherPersonInfo;
+        case 4:
           return descriptionScreen;
+        default:
+          return 4;
       }
     }
   },
