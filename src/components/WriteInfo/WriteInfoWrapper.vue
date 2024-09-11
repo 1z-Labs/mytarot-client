@@ -9,20 +9,22 @@
         <div class="step-bar"></div>
       </div>
     </div>
-     <component :is="currentComponent" :key="$route.params.currentIndex" class="body"/>
-      <div class="footer">
-        <button v-if="currentIndex === 0" id="btn" @click="nextChapter">다음</button>
-        <div v-else class="btn-box">
-          <button class="btn cancel" @click="prevChapter">이전</button>
-          <button class="btn" @click="currentIndex++">확인</button>
-        </div>
+    <component :is="currentComponent" :key="$route.params.currentIndex" class="body"/>
+    <div class="footer">
+      <button v-if="currentIndex === 0" id="btn" @click="nextChapter">다음</button>
+      <div v-else class="btn-box">
+        <button class="btn cancel" @click="prevChapter">이전</button>
+        <button class="btn" @click="currentIndex++">확인</button>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
 import WriteInfo from "@/components/WriteInfo/WriteInfo.vue";
 import MyInfoResult from "@/components/WriteInfo/MyInfoResult.vue";
+import OtherPersonWrite from "@/components/WriteInfo/OtherPersonWrite.vue";
+import OtherPersonInfo from "@/components/WriteInfo/OtherPersonInfo.vue";
 
 export default {
   components: {
@@ -53,6 +55,10 @@ export default {
           return WriteInfo;
         case 1:
           return MyInfoResult;
+        case 2:
+          return OtherPersonWrite;
+        case 3:
+              return OtherPersonInfo;
         default:
           return '';
       }
@@ -69,7 +75,7 @@ export default {
     },
     // 다음 챕터로 이동
     nextChapter() {
-      if (this.currentIndex < this.totalLength){
+      if (this.currentIndex < this.totalLength) {
         this.currentIndex++;
         this.updateRoute();
       }
@@ -86,21 +92,24 @@ export default {
 };
 </script>
 <style scoped>
-.body{
+.body {
   height: 100%;
 }
-.header{
+
+.header {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   height: 6.2vh;
-  width:100%;
+  width: 100%;
   position: relative;
 }
-.header img{
+
+.header img {
   width: 24vw;
 }
-#btn{
+
+#btn {
   width: 85.3vw;
   height: 7.2vh;
   background-color: #1E2352;
@@ -111,31 +120,35 @@ export default {
   position: fixed;
   bottom: 16px;
 }
-#close{
+
+#close {
   position: absolute;
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
   width: 24px;
 }
-.step{
+
+.step {
   width: 100%;
   display: flex;
-  position:absolute;
-  bottom:0;
+  position: absolute;
+  bottom: 0;
 }
-.step-bar{
+
+.step-bar {
   width: 33vw;
-  height:2px;
+  height: 2px;
   background-color: #1E2352;
 }
 
-.footer{
+.footer {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.btn-box{
+
+.btn-box {
   position: fixed;
   bottom: 16px;
   width: 100%;
@@ -143,7 +156,8 @@ export default {
   column-gap: 8px;
   justify-content: center;
 }
-.btn{
+
+.btn {
   width: 60.2vw;
   height: 6.4vh;
   background-color: #1E2352;
@@ -152,9 +166,10 @@ export default {
   font-size: 16px;
   color: white;
 }
-.cancel{
+
+.cancel {
   width: 24.8vw;
-  border:1.5px solid #1E2352;
+  border: 1.5px solid #1E2352;
   background-color: white;
   color: #1E2352;
 }

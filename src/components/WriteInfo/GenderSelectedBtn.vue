@@ -16,11 +16,17 @@
 
 <script>
 export default {
+  name: "GenderSelectedBtn",
   data() {
     return {
-      selectedGender: "여성", // 선택된 라디오 버튼의 value 값을 저장
+      selectedGender: "여성", // 기본값을 여성으로 설정
     };
   },
+  methods: {
+    getGender() {
+      return this.selectedGender; // 선택된 성별을 반환
+    }
+  }
 };
 </script>
 
@@ -32,17 +38,20 @@ export default {
   align-items: center;
   column-gap: 7px;
 }
-p{
+
+p {
   width: 85.3vw;
   display: block;
   font-size: 14px;
   font-weight: 800;
 }
-.body{
+
+.body {
   display: flex;
   flex-direction: row;
   column-gap: 7px;
 }
+
 label {
   width: 42.6vw;
   height: 5.9vh;
@@ -54,9 +63,11 @@ label {
   align-items: center;
   cursor: pointer;
 }
+
 input[type="radio"] {
   display: none;
 }
+
 .checked {
   background: #333333;
   color: white;

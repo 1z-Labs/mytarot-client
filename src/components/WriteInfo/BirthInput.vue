@@ -5,7 +5,7 @@
       <span> * 양력으로 입력해주세요</span>
     </div>
     <div class="body">
-      <div v-for="(field, index) in fields" :key="index" class="box" >
+      <div v-for="(field, index) in fields" :key="index" class="box">
         <input
             ref="inputs"
             type="text"
@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  name: "BirthInput",
   data() {
     return {
       fields: [
@@ -34,10 +35,15 @@ export default {
     };
   },
   methods: {
-    //TODO: input을 각각 검증하기 (년 - 1900~현재 ,월 - 1~12, 일 - 1~31)
-    setBolder(index) { // 포커스가 들어왔을 때 테두리 변경
+    // 생년월일을 반환하는 메서드
+    getBirth() {
+      const year = this.fields[0].value;
+      const month = this.fields[1].value.padStart(2, '0'); // 월을 두 자리로 보정
+      const day = this.fields[2].value.padStart(2, '0');   // 일을 두 자리로 보정
+      return `${year}-${month}-${day}`;
+    },
+    setBolder(index) {
       this.$refs.inputs[index].style.outline = 'none';
-
     },
     setNumberFomat(index) {
       if (this.fields[index].value === '') {
@@ -46,7 +52,7 @@ export default {
         this.fields[index].value = this.fields[index].value.padStart(2, '0');
       }
     },
-    limitInputLength(index) { // 입력값 자릿수를 제한함.
+    limitInputLength(index) {
       const field = this.fields[index];
       field.value = field.value.replace(/\D/g, '');
 
@@ -55,11 +61,12 @@ export default {
       } else {
         field.value = field.value.slice(0, 2);
       }
-      if (this.isValidInput(index) && this.isCompleteInput(index)) { // 입력값이 유효하고 완료되었을 때 다음 input으로 이동
+
+      if (this.isValidInput(index) && this.isCompleteInput(index)) {
         this.moveToNext(index);
       }
     },
-    allowOnlyNumber(event) { // 숫자만 입력 가능하도록 제한하기
+    allowOnlyNumber(event) {
       if (!/^\d$/.test(event.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
         event.preventDefault();
       }
@@ -91,7 +98,7 @@ export default {
     },
     getMaxLength(index) {
       return index === 0 ? 4 : 2;
-    },
+    }
   }
 }
 </script>
@@ -112,7 +119,7 @@ div {
 
 .header {
   justify-content: space-between;
-   margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .body {
@@ -157,9 +164,11 @@ input::placeholder {
   font-size: 18px;
   font-weight: 700;
 }
+
 input:focus {
   border: 2px solid #2e2e2e;
 }
+
 p {
   display: block;
   font-size: 14px;
