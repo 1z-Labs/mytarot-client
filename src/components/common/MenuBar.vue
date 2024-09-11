@@ -2,7 +2,7 @@
   <ul>
     <li v-for="(item, idx) in menu" :key="idx">
       <router-link :to="item.link" class="menu_item" @click="setCurrentMenu(item.name)">
-        <img :src="item.icon" :class="{'active-icon': currentMenu === item.name, 'inactive-icon': currentMenu !== item.name}" alt=""/>
+        <img :src="currentMenu === item.name? item.clickedIcon: item.icon" alt=""/>
         <span :class="{'active-text': currentMenu === item.name, 'inactive-text': currentMenu !== item.name}">{{item.name}}</span>
       </router-link>
     </li>
@@ -22,23 +22,27 @@ export default {
       menu: [
         {
           name: "홈",
-          link: "/home",
-          icon: require(`@/assets/Home/menu/home.svg`)
+          link: "/",
+          icon: require(`@/assets/Home/menu/Home.svg`),
+          clickedIcon: require(`@/assets/Home/menu/clickedHome.svg`)
         },
         {
           name: "타로챗",
-          link: "/tarot_chat",
-          icon: require(`@/assets/Home/menu/tarotChat.svg`)
+          link: "/",
+          icon: require(`@/assets/Home/menu/tarotChat.svg`),
+          clickedIcon: require(`@/assets/Home/menu/clickedTarotChat.svg`)
         },
         {
           name: "타로",
-          link: "/resultcreate",
-          icon: require(`@/assets/Home/menu/myTarot.svg`)
+          link: "/resultCreate",
+          icon: require(`@/assets/Home/menu/myTarot.svg`),
+          clickedIcon: require(`@/assets/Home/menu/clickedMyTarot.svg`)
         },
         {
           name: "마이페이지",
-          link: "/mypage",
-          icon: require(`@/assets/Home/menu/myPage.svg`)
+          link: "/",
+          icon: require(`@/assets/Home/menu/myPage.svg`),
+          clickedIcon: require(`@/assets/Home/menu/clickedMyPage.svg`)
         }
       ]
     }
@@ -82,14 +86,8 @@ span{
 .inactive-text {
   color: #7E818C;
 }
-.inactive-icon {
-  filter: grayscale(100%); /* 회색 아이콘 */
-}
 .active-text {
   color: white;
-}
-.active-icon {
-  filter: grayscale(0); /* 원래 색상 유지 */
 }
 
 </style>
