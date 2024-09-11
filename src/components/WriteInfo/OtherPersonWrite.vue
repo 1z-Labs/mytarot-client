@@ -20,10 +20,7 @@ export default {
         birth: this.$refs.birthInput.getBirth()  // BirthInput에서 생년월일을 가져오는 가정
       };
 
-      // localStorage에 데이터를 저장
       localStorage.setItem('otherPersonInfo', JSON.stringify(otherPersonData));
-
-      // 콘솔에 저장된 데이터 출력
       console.log('Saved other person info:', otherPersonData);
     }
   }
@@ -53,5 +50,4 @@ export default {
 </template>
 
 <style scoped>
-/* 스타일은 기존 그대로 유지 */
 </style>

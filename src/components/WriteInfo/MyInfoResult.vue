@@ -5,27 +5,32 @@
       <span>헬리님의 정보를 확인해주세요</span>
     </div>
     <div class="body">
-      <div class="info-box" >
+      <div class="info-box">
         <div class="info" v-for="(info, idx) in userInfo" :key="idx">
-          {{info}}
+          {{ info }}
         </div>
       </div>
 
       <div class="horoscope">
         <span>생년월일시에 따른 사주명식</span>
-        <horoscope-table/>
-        <button @click="showAlert = true"><img src="@/assets/WriteInfo/help.svg" alt="도움버튼">알고 계신 사주간지와 다른가요? </button>
+        <!-- saju 데이터를 HoroscopeTable로 전달 -->
+        <horoscope-table :saju="userSaju"/>
+        <button @click="showAlert = true"><img src="@/assets/WriteInfo/help.svg" alt="도움버튼">알고 계신 사주간지와 다른가요?</button>
       </div>
     </div>
   </div>
   <basic-alert v-model:show="showAlert" :title="'사주명식 계산안내'" :height=45.3 :bodyText="alertText"/>
   <basic-confirm v-model:show="showConfirm" :title="'정말 나가시겠어요?'" :height=25.6 :bodyText="confirmText"
-  :btn1="'나가기'" :btn2="'이어서하기'" :FuncNo="FunctionNo" :FuncYes="FunctionYes"/>
+                 :btn1="'나가기'" :btn2="'이어서하기'" :FuncNo="FunctionNo" :FuncYes="FunctionYes"/>
+  <div>
 
+<!--    사용자 사주 출력-->
+    <p>{{userSaju}}</p>
+  </div>
 </template>
 
 <script>
-
+import axios from 'axios';
 import HoroscopeTable from "@/components/WriteInfo/HoroscopeTable.vue";
 import BasicAlert from "@/components/common/Modal/BasicAlert.vue";
 import BasicConfirm from "@/components/common/Modal/BasicConfirm.vue";
@@ -37,43 +42,70 @@ export default {
     HoroscopeTable
   },
 
-  data(){
-    return{
+  data() {
+    return {
       showAlert: false,
       showConfirm: false,
       userInfo: {
-        gender : '여성',
-        birthday: '2005년 06월 24일',
-        birthtime: '오후 12시 50분',
+        gender: '',
+        birthday: '',
+        birthtime: ''
       },
-      alertText:`<div style="font-size:16px; font-weight:400; color:#555555; line-height: 19.2px;">
-        마이타로 콘텐츠 해석에 사용되는 만세력은<b style="font-size: 16px; font-weight: 700;">입력하신 양력 생년월일시를 음력으로 변환하고 써머타임 보정 및 1920년 이후의 절기의 시작일을 데이터화</b>
-        한 내용을 바탕으로 사주명식을 계산하고 있습니다.<br/><br/>알고계시는 사주명식과 다르게 계산되어 나오는 것은 <span style="font-size: 16px;
-  font-weight: 700; color:#4975E5;"> 마이타로 만세력의 독자적인 해석 방식</span> 때문이며 고객님께서 잘못 입력하시거나 <span style="font-size: 16px;
-  font-weight: 700;color:#4975E5;">틀린 해석이 출력되는 것은 아닙니다.</span>
-      </div>`,
-      confirmText: `나가셔도 입력하신 정보가 저장되지 않아요<br/>작성을 계속하시려면 이어서하기를 클릭해주세요`
+      userSaju: null,  // 서버로부터 받아올 사주 데이터
+      alertText: `...`,  // 생략된 알림 텍스트
+      confirmText: `...` // 생략된 확인 텍스트
     }
   },
+
+  mounted() {
+    this.loadUserInfo();
+    this.createUserInfo();
+  },
+
   methods: {
-    next(){
-      console.log('다음 버튼 클릭');
+    loadUserInfo() {
+      const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
+      if (storedInfo) {
+        this.userInfo = storedInfo;
+      }
     },
-    cancle(){
-      console.log('이전 버튼 클릭');
+
+    async createUserInfo() {
+      try {
+        const response = await axios.put('http://34.64.230.160:3001/my_infos/1', {
+          gender: this.userInfo.gender,
+          birthday: this.userInfo.birthday,
+          birthtime: this.userInfo.birthtime
+        });
+
+        this.fetchUserSaju(response.data.id);
+      } catch (error) {
+        console.error('사용자 정보 생성 오류:', error);
+      }
     },
-    FunctionNo(){
+
+    async fetchUserSaju() {
+      try {
+        const response = await axios.get(`http://34.64.230.160:3001/my_infos/1/user_saju`);
+        this.userSaju = response.data;
+      } catch (error) {
+        console.error('사주 정보 불러오기 오류:', error);
+      }
+    },
+
+    FunctionNo() {
       console.log('나가기 버튼 클릭');
     },
-    FunctionYes(){
+
+    FunctionYes() {
       console.log('이어서하기 버튼 클릭');
-    },
+    }
   }
 }
-
 </script>
+
 <style scoped>
-.body{
+.body {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -81,63 +113,74 @@ export default {
   align-items: center;
   row-gap: 28px;
 }
-.title{
+
+.title {
   display: flex;
   flex-direction: column;
   margin-top: 42px;
   width: 85.3vw;
 }
-.title> p{
+
+.title > p {
   font-size: 14px;
   font-weight: 700;
-  margin-bottom:8px;
+  margin-bottom: 8px;
 }
-.title > span{
+
+.title > span {
   font-size: 24px;
   font-weight: 700;
 }
-#close{
+
+#close {
   position: absolute;
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
   width: 24px;
 }
-.step{
+
+.step {
   width: 100%;
   display: flex;
-  position:absolute;
-  bottom:0;
+  position: absolute;
+  bottom: 0;
 }
-.step-bar{
+
+.step-bar {
   width: 33vw;
-  height:2px;
+  height: 2px;
   background-color: #1E2352;
 }
-.info-box{
+
+.info-box {
   width: 85.3vw;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 24px;
 }
-.info{
+
+.info {
   width: fit-content;
   background-color: #F5F5F5;
   padding: 8px 18px 8px 18px;
   border-radius: 8px;
 }
-.horoscope{
+
+.horoscope {
   margin-top: 40px;
 }
-.horoscope > span{
+
+.horoscope > span {
   display: block;
   font-size: 18px;
   font-weight: 700;
-  width:100%;
+  width: 100%;
   margin-bottom: 12px;
 }
-.horoscope  button{
+
+.horoscope button {
   width: 58.6vw;
   height: 4.1vh;
   background-color: #F5F5F5;
