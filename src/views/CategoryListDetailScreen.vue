@@ -11,7 +11,7 @@
           <img :src="item.img" alt=""/>
           <div class="text">
             <h1>{{ item.title }}</h1>
-            <p>{{  item.description }}</p>
+            <p>{{ item.description }}</p>
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@
 </template>
 <script>
 export default {
-  data(){
+  data() {
     return {
       category: '전문사주',
       contents: [],
@@ -29,59 +29,59 @@ export default {
     }
   },
   created() {
-    this.contents=[
+    this.contents = [
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
         img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
       },
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
-        img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
+        img: require('@/assets/Home/lank/249_thumbnail.jpg'),
       },
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
-        img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
+        img: require('@/assets/Home/lank/40_thumbnail.jpg'),
       },
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
-        img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
+        img: require('@/assets/Home/lank/217_thumbnail.jpg'),
       },
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
-        img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
+        img: require('@/assets/Home/lank/126_thumbnail.jpg'),
       },
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
-        img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
+        img: require('@/assets/Home/lank/128_thumbnail.jpg'),
       },
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
-        img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
+        img: require('@/assets/Home/lank/169_thumbnail.jpg'),
       },
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
-        img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
+        img: require('@/assets/Home/lank/174_thumbnail.jpg'),
       },
       {
-        title : '소설처럼 다가올 3명의 인연',
+        title: '소설처럼 다가올 3명의 인연',
         description: '다가올 인연 세명과 소로 탈출 비결 대공개!',
-        img: require('@/assets/Home/lank/6_thumbnail_2.jpg'),
+        img: require('@/assets/Home/lank/15_thumbnail.jpg'),
       },
     ]
   },
-  methods:{
-   go(idx){
-     this.clickedContent = idx;
-     this.updateRoute();
-   },
+  methods: {
+    go(idx) {
+      this.clickedContent = idx;
+      this.updateRoute();
+    },
     updateRoute() {
       this.$router.push({path: `/contentsDetail/`});
     },
@@ -89,11 +89,12 @@ export default {
 }
 </script>
 <style scoped>
-div, span, ul, li{
+div, span, ul, li {
   box-sizing: border-box;
 }
-.header{
-  width:100%;
+
+.header {
+  width: 100%;
   height: 7.8vh;
   display: flex;
   align-items: center;
@@ -103,27 +104,32 @@ div, span, ul, li{
   top: 0;
   background-color: white;
 }
-.header >  img{
+
+.header > img {
   width: 6.4vw;
   height: 2.9vh;
 }
-.header >span{
-  margin:auto;
+
+.header > span {
+  margin: auto;
   font-size: 18px;
   line-height: 18px;
   font-weight: 700;
 }
-.body{
+
+.body {
   width: 100%;
   padding: 10.3vh 16px 50px 16px;
 }
-.body > span{
+
+.body > span {
   font-size: 14px;
-  font-weight:  700;
+  font-weight: 700;
   line-height: 14px;
   text-align: left;
 }
-.content_con{
+
+.content_con {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -132,29 +138,34 @@ div, span, ul, li{
   row-gap: 26px;
   column-gap: 8px;
 }
-.content{
-  width:100%;
+
+.content {
+  width: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
   margin-top: 12px;
 }
-.content img{
-  width:100%;
+
+.content img {
+  width: 100%;
   border-radius: 4px;
 }
-.content h1{
+
+.content h1 {
   font-size: 14px;
   font-weight: 700;
   line-height: 16.8px;
 }
-.content p{
+
+.content p {
   font-size: 10px;
   line-height: 12px;
   font-weight: 400;
   color: #8A8A8A;
 }
-.text{
+
+.text {
   display: flex;
   flex-direction: column;
   row-gap: 4px;
