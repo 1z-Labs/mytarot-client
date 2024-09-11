@@ -41,13 +41,14 @@ export default {
     SwiperSlide,
     Swiper
   },
-  data(){
-    return{
-      bestCategory:["종합", "솔로탈출", "재회", "직장취업", "오늘운세"],
-      clickedName : '종합',
+  data() {
+    return {
+      bestCategory: ["종합", "솔로탈출", "재회", "직장취업", "오늘운세"],
+      clickedName: '종합',
       index: 1,
     }
   },
+
   methods: {
     filterCategory(item) {
       this.clickedName = item;

@@ -1,14 +1,4 @@
 <template>
-  <!--앱 바-->
-  <div class="flex flex-col items-center p-5 mb-6 relative">
-    <img src="@/assets/applogo.svg" alt="앱로고">
-    <div class="step flex justify-between w-full absolute bottom-0">
-      <div class="step-bar"></div>
-      <div class="step-bar"></div>
-      <div class="step-bar"></div>
-    </div>
-  </div>
-
   <div class="p-5 flex flex-col gap-10">
     <!--세번째 항목 안내-->
     <div class="flex flex-col gap-3">

@@ -36,9 +36,9 @@ export default {
   methods: {
     saveUserInfo() {
       const userInfo = {
-        birthday: this.$refs.birthInput.getBirth(),  // BirthInput에서 생년월일 가져오기
-        birthtime: this.$refs.timeInput.getTime(),  // TimeInput에서 시간 가져오기
-        gender: this.$refs.genderSelected.getGender()  // GenderSelectedBtn에서 성별 가져오기
+        birthday: this.$refs.birthInput.getBirth(),
+        birthtime: this.$refs.timeInput.getTime(),
+        gender: this.$refs.genderSelected.getGender()  
       };
 
       localStorage.setItem('userInfo', JSON.stringify(userInfo));

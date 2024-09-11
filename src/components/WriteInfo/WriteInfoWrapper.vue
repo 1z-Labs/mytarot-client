@@ -59,9 +59,11 @@ export default {
         case 2:
           return OtherPersonWrite;
         case 3:
-              return OtherPersonInfo;
+          return OtherPersonInfo;
+        case 4:
+          return descriptionScreen;
         default:
-          return '';
+          return 4;
       }
     }
   },
@@ -87,6 +89,7 @@ export default {
       this.$router.push({path: `/writeInfo/${this.currentIndex}`});
     },
     close() {
+
       this.$router.push('/home');  // 뒤로 가기 버튼이 눌리면 홈으로 이동
     },
     handleSaveInfo() {
@@ -98,6 +101,9 @@ export default {
       } else {
         console.error('saveInfo method not found on the current component');
       }
+
+      this.$router.push('/writeInfoStart');  // 뒤로 가기 버튼이 눌리면 홈으로 이동
+
     }
   },
 };
