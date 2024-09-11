@@ -83,7 +83,7 @@ export default {
      this.updateRoute();
    },
     updateRoute() {
-      this.$router.push({path: `/contentsDetail/${this.clickedContent}`});
+      this.$router.push({path: `/contentsDetail/`});
     },
   }
 }
@@ -115,8 +115,7 @@ div, span, ul, li{
 }
 .body{
   width: 100%;
-  padding: 0 16px 50px 16px;
-  padding-top: calc(7.8vh + 20px);
+  padding: 10.3vh 16px 50px 16px;
 }
 .body > span{
   font-size: 14px;

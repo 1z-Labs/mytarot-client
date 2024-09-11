@@ -108,9 +108,13 @@ export default{
   row-gap: 4px
 }
 .reviews-texts > div p{
-
+  color: #1E2352;
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 4px;
 }
 .reviews-texts > div{
+  display: flex;
   color: #1E2352;
   font-size: 18px;
   font-weight: 700;

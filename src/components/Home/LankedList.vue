@@ -12,7 +12,6 @@
           :pagination="{ clickable: true, el:null }"
           @slideChange="onSlideChange"
           :spaceBetween="0"
-
           :modules="modules"
           class="swiper"
       >
@@ -97,8 +96,6 @@ button{
 .best-category::-webkit-scrollbar {
   display: none;
 }
-
-
 .nonclicked{
     background-color: #ECECEC;
     color: #555555;
@@ -117,7 +114,7 @@ button{
   border-radius: 8px;
   padding: 31px 16.5px;
   border: 0.5px solid #ECECEC;
-  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   column-gap: 10px;
