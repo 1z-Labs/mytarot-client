@@ -35,8 +35,8 @@ export default {
     BasicConfirm,
     BasicAlert,
     HoroscopeTable
-
   },
+
   data(){
     return{
       showAlert: false,

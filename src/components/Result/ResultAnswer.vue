@@ -80,7 +80,7 @@ export default {
               <!-- 챕터 제목 옆에 시작 페이지 번호 표시 -->
               <button @click="goToChapter(index + 1)" class="ml-4 flex justify-between w-full items-center">
                 {{ result.title }}
-                <span class="flex justify-end ml-[24px] mr-8 text-[#777]">
+                <span class="flex justify-end ml-[24px] mr-4 text-[#777]">
                   {{ (index + 1) * 2 }}
                 <img src="@/assets/Result/ResultChapterArr.svg" class="relative top-[-4px]"/>
               </span>
