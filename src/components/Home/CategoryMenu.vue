@@ -79,7 +79,7 @@
         this.updateRoute();
       },
       updateRoute() {
-        this.$router.push({path: `/categoryDetail/${this.clickedCategory}`});
+        this.$router.push({path: `/categoryDetail/`});
       },
     }
   }
