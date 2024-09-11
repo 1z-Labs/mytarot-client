@@ -25,6 +25,7 @@ import WriteInfo from "@/components/WriteInfo/WriteInfo.vue";
 import MyInfoResult from "@/components/WriteInfo/MyInfoResult.vue";
 import OtherPersonWrite from "@/components/WriteInfo/OtherPersonWrite.vue";
 import OtherPersonInfo from "@/components/WriteInfo/OtherPersonInfo.vue";
+import descriptionScreen from "@/views/descriptionScreen.vue";
 
 export default {
   components: {
@@ -58,9 +59,11 @@ export default {
         case 2:
           return OtherPersonWrite;
         case 3:
-              return OtherPersonInfo;
+          return OtherPersonInfo;
+        case 4:
+          return descriptionScreen;
         default:
-          return '';
+          return 4;
       }
     }
   },
@@ -86,7 +89,7 @@ export default {
       this.$router.push({path: `/writeInfo/${this.currentIndex}`});
     },
     close() {
-      this.$router.push('/home');  // 뒤로 가기 버튼이 눌리면 홈으로 이동
+      this.$router.push('/writeInfoStart');  // 뒤로 가기 버튼이 눌리면 홈으로 이동
     }
   },
 };

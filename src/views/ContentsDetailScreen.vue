@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <button>
+    <button @click="handlePayBtn">
       구매하기
       <span>
         {{price}}
@@ -49,40 +49,22 @@
 </template>
 
 <script>
+import axios from 'axios';
 import CardHeader from "@/components/ContentDetail/CardHeader";
 import ReviewSlider from "@/components/ContentDetail/ReviewSlider.vue";
+
 export default {
   components: {
     CardHeader,
     ReviewSlider
   },
-  data(){
+  data() {
     return {
-      price: 65,
-      introText: "짝사랑 중인 당신의 마음은 안녕한가요?<br/>" +
-          "그 사람도 나를 좋아하는지 설렘 반, 불안함 반으로 밤잠을 설치고있지는 않나요?<br/>" +
-          "<br/>" +
-          "이제 나의 속마음부터 그 분의 속마음까지 <br/>" +
-          "당신의 궁금증을 모두 풀어드릴게요. <br/>" +
-          "<br/>" +
-          "나와 그 사람의 사주풀이를 통해, <br/>" +
-          "현재와 앞으로의 두 분의 인연을 풀이해드립니다. <br/>" +
-          "<br/>" +
-          "🔮 이런 방식으로 해석합니다<br/>" +
-          "✔ 사주팔자의 천간과 지지의 조합을 분석하여 나의 성향과 마음상태를 분석합니다.<br/>" +
-          "✔ 사주팔자의 오행과 십성을 분석하여 나의 연애 성향을 파악합니다. <br/>" +
-          "✔ 사주팔자의 연주, 월주, 일주를 분석하여 나와 상대방의 궁합을 분석합니다.<br/>" +
-          "✔ 사주팔자의 대운을 분석해 나와 상대방의 연애운을 예측합니다. <br/>" +
-          "<br/>" +
-          "이런 분들에게 추천해요!<br/>" +
-          "<br/>" +
-          "😢 짝사랑으로 마음이 혼란하신 분<br/>" +
-          "👀 그 사람의 속마음이 궁금하신 분<br/>" +
-          "🌸 짝사랑하는 상대와 연인으로 발전하고 싶은 분<br/>" +
-          "💕 고백할 완벽한 타이밍을 고민하고 계신 분",
+      price: 0,
+      introText: '',
       chapterList: ['내 마음이 왜 이런걸까?', "앞으로 다가올 연애운 전환점", "그 사람도 나를 생각할까?", "상대의 마음속에 다른 사람이 있을까?", "앞으로 우리 두사람은 어떻게 될까?","내 마음을 전해도 될까?","그 사람의 마음을 사로잡는 비법", "마지막으로 나에게 전하는 한마디"],
       preViewImg: [require('@/assets/Home/11_preview_01.jpg'), require('@/assets/Home/11_preview_02.jpg')],
-      aboutList:  [
+      aboutList: [
         require('@/assets/Home/11_preview_01.jpg'),
         require('@/assets/Home/11_preview_02.jpg'),
         require('@/assets/Home/11_preview_01.jpg'),
@@ -90,11 +72,35 @@ export default {
         require('@/assets/Home/11_preview_01.jpg'),
         require('@/assets/Home/11_preview_02.jpg'),
       ],
-
-    }
+      contentTitle: '',
+      contentSubtitle: '',
+      contentDescription: '',
+      contentImagePath: '',
+      clover: 0
+    };
   },
-}
+  created() {
+    this.fetchContentData();
+  },
+  methods: {
+    async fetchContentData() {
+      try {
+        const response = await axios.get('http://34.64.230.160:3001/contents/1');
+        const data = response.data;
+        this.contentDescription = data.description;
+        this.introText = `${data.description}`;
+        this.price = data.clover;
+      } catch (error) {
+        console.error('Error fetching content data:', error);
+      }
+    },
+    handlePayBtn() {
+      this.$router.push('/writeInfoStart');
+    }
+  }
+};
 </script>
+
 <style scoped>
 div, span, ul, li{
   box-sizing: border-box;

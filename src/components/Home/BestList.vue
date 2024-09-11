@@ -5,7 +5,10 @@
       <img src="@/assets/Home/detail_arrow.svg" alt="상세페이지보기 버튼" @click="this.$router.push({path: `/categoryDetail/${this.category}`});"/>
     </div>
     <div class="body">
-      <img src="@/assets/Home/lank/6_thumbnail_2.jpg" v-for="idx in 4" :key="idx" alt="사주콘텐츠" @click="go(idx)"/>
+      <img src="@/assets/Home/lank/6_thumbnail_2.jpg"  alt="사주콘텐츠" @click="go(idx)"/>
+      <img src="@/assets/Home/lank/249_thumbnail.jpg"  alt="사주콘텐츠" @click="go(idx)"/>
+      <img src="@/assets/Home/lank/40_thumbnail.jpg"  alt="사주콘텐츠" @click="go(idx)"/>
+      <img src="@/assets/Home/lank/217_thumbnail.jpg"  alt="사주콘텐츠" @click="go(idx)"/>
     </div>
   </div>
 </template>
@@ -23,7 +26,7 @@ export default{
       this.updateRoute()
     },
     updateRoute() {
-      this.$router.push({path: `/contentsDetail/${this.clickedContent}`});
+      this.$router.push({path: `/contentsDetail/`});
     },
   }
 }

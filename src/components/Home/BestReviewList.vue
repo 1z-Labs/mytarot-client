@@ -15,16 +15,16 @@ export default{
       clickedContent: null,
       reviewList: [
         {
-          image: require(`@/assets/Home/lank/16_thumbnail.jpg`),
+          image: require(`@/assets/Home/lank/126_thumbnail.jpg`),
         },
         {
-          image: require(`@/assets/Home/lank/16_thumbnail.jpg`),
+          image: require(`@/assets/Home/lank/128_thumbnail.jpg`),
         },
         {
-          image: require(`@/assets/Home/lank/16_thumbnail.jpg`),
+          image: require(`@/assets/Home/lank/6_thumbnail_2.jpg`),
         },
         {
-          image: require(`@/assets/Home/lank/16_thumbnail.jpg`),
+          image: require(`@/assets/Home/lank/126_thumbnail.jpg`),
         },
         {
           image: require(`@/assets/Home/lank/16_thumbnail.jpg`),
