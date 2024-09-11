@@ -4,7 +4,7 @@
       <h1>💯 200개 이상의 후기가 증명👍</h1>
     </div>
     <div class="body">
-      <img :src="item.image" v-for="(item, idx) in reviewList" :key="idx" alt="사주콘텐츠" />
+      <img :src="item.image" v-for="(item, idx) in reviewList" :key="idx" alt="사주콘텐츠" @click="go(idx)"/>
     </div>
   </div>
 </template>
@@ -12,6 +12,7 @@
 export default{
   data(){
     return{
+      clickedContent: null,
       reviewList: [
         {
           image: require(`@/assets/Home/lank/16_thumbnail.jpg`),
@@ -31,6 +32,15 @@ export default{
 
       ],
     }
+  },
+  methods:{
+    go(idx){
+      this.clickedContent = idx;
+      this.updateRoute()
+    },
+    updateRoute() {
+      this.$router.push({path: `/contentsDetail/${this.clickedContent}`});
+    },
   }
 }
 </script>
