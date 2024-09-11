@@ -9,12 +9,12 @@
         <div class="step-bar"></div>
       </div>
     </div>
-    <component :is="currentComponent" :key="$route.params.currentIndex" class="body"/>
+    <component :is="currentComponent" :key="$route.params.currentIndex" class="body" ref="currentComponentRef"/>
     <div class="footer">
-      <button v-if="currentIndex === 0" id="btn" @click="nextChapter">다음</button>
+      <button v-if="currentIndex === 0 && currentIndex === 4" id="btn" @click="nextChapter">다음</button>
       <div v-else class="btn-box">
         <button class="btn cancel" @click="prevChapter">이전</button>
-        <button class="btn" @click="currentIndex++">확인</button>
+        <button class="btn" @click="handleSaveInfo">확인</button>
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@ import WriteInfo from "@/components/WriteInfo/WriteInfo.vue";
 import MyInfoResult from "@/components/WriteInfo/MyInfoResult.vue";
 import OtherPersonWrite from "@/components/WriteInfo/OtherPersonWrite.vue";
 import OtherPersonInfo from "@/components/WriteInfo/OtherPersonInfo.vue";
+import descriptionScreen from "@/views/descriptionScreen.vue";
 
 export default {
   components: {
@@ -43,7 +44,7 @@ export default {
   data() {
     return {
       currentIndex: 0, // 현재 챕터의 인덱스 (0은 목차 페이지)
-      totalLength: 2,
+      totalLength: 3,
       step: 0,
     };
   },
@@ -87,6 +88,16 @@ export default {
     },
     close() {
       this.$router.push('/home');  // 뒤로 가기 버튼이 눌리면 홈으로 이동
+    },
+    handleSaveInfo() {
+      // 하위 컴포넌트의 메서드 호출
+      const component = this.$refs.currentComponentRef;
+      if (component && typeof component.saveInfo === 'function') {
+        component.saveInfo();
+        this.nextChapter();
+      } else {
+        console.error('saveInfo method not found on the current component');
+      }
     }
   },
 };
