@@ -79,7 +79,11 @@ export default {
 }
 .nameInput:focus{
   font-size: 18px;
-  color: #BDBDBD;
+  color: #000000;
   outline:2px solid #242424;
+}
+.nameInput::placeholder{
+  font-size: 18px;
+  color: #BDBDBD;
 }
 </style>

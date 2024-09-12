@@ -9,7 +9,7 @@
         <div class="step-bar"></div>
       </div>
     </div>
-    <component :is="currentComponent" :key="$route.params.currentIndex" class="body" ref="currentComponentRef"/>
+    <component :is="currentComponent" :key="$route.params.currentIndex" class="body" ref="currentComponentRef" v-bind="currentProps"/>
     <div class="footer">
       <button v-if="currentIndex === 0 || currentIndex === 4" id="btn" @click="nextChapter">다음</button>
       <div v-else class="btn-box">
@@ -46,6 +46,7 @@ export default {
       currentIndex: 0, // 현재 챕터의 인덱스 (0은 목차 페이지)
       totalLength: 4,
       step: 0,
+      currentProps:{}
     };
   },
   computed: {
@@ -65,7 +66,7 @@ export default {
         default:
           return '';
       }
-    }
+    },
   },
 
   methods: {

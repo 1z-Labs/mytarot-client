@@ -1,40 +1,62 @@
 <template>
-    <div class="horoscope-table">
-      <div class="header" v-for="idx in 4" :key="idx">
-        {{dataes.saju[idx -1]}}
-      </div>
-      <!-- 첫 번째 행: 천간 -->
-      <div class="item gan" v-for="idx in 4." :key="idx">
-        <span class="chinese-char">{{ dataes.ch[idx -1] }}</span>
-        {{ dataes.kor[idx -1] }}
-      </div>
-      <!-- 두 번째 행: 지지 -->
-      <div class="item" v-for="idx in 4" :key="idx">
-        <span class="chinese-char">{{ dataes.ch[4 + idx -1] }}</span>
-        {{ dataes.kor[ 4 + idx -1] }}</div>
-
+  <div class="horoscope-table">
+    <div class="header" v-for="idx in 4" :key="idx">
+      {{formattedList.saju[idx -1]}}
     </div>
+    <!-- 첫 번째 행: 천간 -->
+    <div class="item gan" v-for="idx in 4." :key="idx">
+      <span class="chinese-char">{{ formattedList.ch[idx -1] }}</span>
+      {{ formattedList.kor[idx -1] }}
+    </div>
+    <!-- 두 번째 행: 지지 -->
+    <div class="item" v-for="idx in 4" :key="idx">
+      <span class="chinese-char">{{ formattedList.ch[4 + idx -1] }}</span>
+      {{ formattedList.kor[ 4 + idx -1] }}</div>
+
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      dataes: {
-        saju: ["시주", "일주", "월주", "년주"],
-        kor: ["갑", "을", "병", "정", "무", "기", "경", "신"],
-        ch: ["庚", "辛", "壬", "癸", "甲", "乙", "丙", "丁"],
-      },
-      koreanList: [],
-      chineseList: [],
-    };
+  props: {
+    saju: {
+      type: Object,
+      required: true
+    }
   },
   methods: {
-    splitKoreanAndChinese(str) {
-      this.koreanList = str.match(/[가-힣]+/g);
-      this.chineseList = str.match(/[\u4e00-\u9fff]+/g);
-    },
+    sajuListFormat(sajuData) {
+      const result = {
+        saju: ["시주", "일주", "월주", "년주"],
+        kor: [],
+        ch: []
+      };
+      const korParts = [];
+      const chParts = [];
 
+      for (const key in sajuData) {
+          const [korPart, chPartWithBrackets] = sajuData[key].split(' ('); // ' ('로 한글과 한자 분리
+          const chPart = chPartWithBrackets ? chPartWithBrackets.slice(0, -1) : ''; // ')' 제거
+          if (korPart && chPartWithBrackets) {
+            korParts.push(korPart); // 한글 파트를 저장
+            chParts.push(chPart);   // 한자 파트를 저장
+          }
+      }
+
+      // 천간과 지지를 순서대로 배열에 추가
+      for (let i = 0; i < 2; i++) { //천간, 지지
+        for (let j = 0; j < 4; j++) {
+          result.kor.push(korParts[j] ? korParts[j][i] : '');
+          result.ch.push(chParts[j] ? chParts[j][i] : '');
+        }
+      }
+      return result;
+    }
+},
+  computed:{
+    formattedList(){
+      return this.sajuListFormat(this.saju)
+    }
   }
 };
 </script>
