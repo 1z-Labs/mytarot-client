@@ -123,7 +123,7 @@ div {
 }
 
 .body {
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: baseline;
   font-size: 18px;
   font-weight: 700;
