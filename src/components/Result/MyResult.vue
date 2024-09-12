@@ -22,7 +22,7 @@
           <p>{{ userSaju?.time }}</p>
           <p>{{ userInfo?.gender === 0 ? '여자' : '남자' }}</p>
         </div>
-        <img src="@/assets/Result/MyResultSep.svg" class="mt-2.5 w-[87.2vw] mx-auto"/>
+<!--        <img src="@/assets/Result/MyResultSep.svg" class="mt-2.5 w-[87.2vw] mx-auto"/>-->
 
         <!-- 사주 레이블 및 값 -->
         <div class="saju-grid bg-myResultBg w-[87.2vw] h-[3.2vh] gap-4 mx-auto mt-[10px]">
