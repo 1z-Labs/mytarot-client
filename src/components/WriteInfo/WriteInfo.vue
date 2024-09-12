@@ -10,7 +10,6 @@
       <GenderSelectedBtn ref="genderSelected"/>
     </div>
   </div>
-  <button @click="saveUserInfo">저장</button>
 </template>
 
 <script>
@@ -43,7 +42,8 @@ export default {
 
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
       console.log('저장된 사용자 정보 확인', userInfo);
-    }
+    },
+
   }
 }
 </script>

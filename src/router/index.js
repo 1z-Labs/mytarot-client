@@ -77,6 +77,7 @@ const routes = [
         name: 'WriteInfoStart',
         component: WriteInfoStartScreen,
     },
+
 ]
 
 const router = createRouter({
