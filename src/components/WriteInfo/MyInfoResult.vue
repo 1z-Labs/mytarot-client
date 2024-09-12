@@ -75,7 +75,7 @@ export default {
         await axios.patch(this.apiUrl, {
           my_info: {
             pName: info.pName,
-            pGender: info.pGender === "남성" ? 1 : 2,  // 성별을 숫자로 변환
+            pGender: info.pGender === "남성" ? 1 : 0,
             pBirthday: info.pBirthday,
             pBirthtime: info.pBirthtime
           }
