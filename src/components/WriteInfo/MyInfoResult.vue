@@ -1,7 +1,7 @@
 <template>
   <div style="display: flex; flex-direction: column; align-items: center">
     <div class="title">
-      <p>첫번째 항목</p>
+      <p> 첫번째 항목 </p>
       <span>헬리님의 정보를 확인해주세요</span>
     </div>
     <div class="body">
@@ -13,6 +13,7 @@
 
       <div class="horoscope">
         <span>생년월일시에 따른 사주명식</span>
+        <!-- saju 데이터를 HoroscopeTable로 전달 -->
         <horoscope-table :saju="userSaju"/>
         <button @click="showAlert = true"><img src="@/assets/WriteInfo/help.svg" alt="도움버튼">알고 계신 사주간지와 다른가요?</button>
       </div>
@@ -22,7 +23,7 @@
   <basic-confirm v-model:show="showConfirm" :title="'정말 나가시겠어요?'" :height=25.6 :bodyText="confirmText"
                  :btn1="'나가기'" :btn2="'이어서하기'" :FuncNo="FunctionNo" :FuncYes="FunctionYes"/>
   <div>
-    <p>{{ userSaju }}</p>
+    <p>{{userSaju}}</p>
   </div>
 </template>
 
@@ -43,65 +44,36 @@ export default {
     return {
       showAlert: false,
       showConfirm: false,
-      otherPerson: null,  // 상대방 정보
-      userSaju: null,     // 서버로부터 받아올 사주 데이터
-      alertText: `...`,   // 생략된 알림 텍스트
-      confirmText: `...`, // 생략된 확인 텍스트
-      apiUrl: "http://34.64.230.160:3001/my_infos/1", // 사용자 정보 저장 URL
-      userSajuUrl: "http://34.64.230.160:3001/my_infos/1/user_saju" // 사주 정보 가져오기 URL
-    };
+      userInfo: {
+        gender: '',
+        birthday: '',
+        birthtime: ''
+      },
+      userSaju: null,  // 서버로부터 받아올 사주 데이터
+      alertText: `...`,  // 생략된 알림 텍스트
+      confirmText: `...` // 생략된 확인 텍스트
+    }
   },
 
   mounted() {
-    // 상대방 정보 로드
-    this.loadOtherPersonInfo();
-    // 사용자 사주 정보 가져오기
-    this.getUserSaju();
+    this.loadUserInfo();
+    this.createUserInfo();
   },
 
   methods: {
-    // 상대방 정보를 로컬 스토리지에서 불러오기
-    loadOtherPersonInfo() {
-      const storedInfo = localStorage.getItem('otherPersonInfo');
+    loadUserInfo() {
+      const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
       if (storedInfo) {
-        this.otherPerson = JSON.parse(storedInfo);
-        this.saveOtherPersonInfo(this.otherPerson);
+        this.userInfo = storedInfo;
       }
     },
 
-    // 상대방 정보를 서버에 저장
-    async saveOtherPersonInfo(info) {
-      try {
-        await axios.patch(this.apiUrl, {
-          my_info: {
-            pName: info.pName,
-            pGender: info.pGender === "남성" ? 1 : 0,
-            pBirthday: info.pBirthday,
-            pBirthtime: info.pBirthtime
-          }
-        });
-      } catch (error) {
-        console.error("상대방 정보 저장 중 오류 발생:", error);
-      }
-    },
-
-    // 사주 정보를 서버에서 가져오기
-    async getUserSaju() {
-      try {
-        const response = await axios.get(this.userSajuUrl);
-        this.userSaju = response.data.user_saju;
-      } catch (error) {
-        console.error("사주 정보를 가져오는 중 오류 발생:", error);
-      }
-    },
-
-    // 사용자 정보 업데이트
     async createUserInfo() {
       try {
-        const response = await axios.put(this.apiUrl, {
-          gender: this.otherPerson.pGender,
-          birthday: this.otherPerson.pBirthday,
-          birthtime: this.otherPerson.pBirthtime
+        const response = await axios.put('http://34.64.230.160:3001/my_infos/1', {
+          gender: this.userInfo.gender,
+          birthday: this.userInfo.birthday,
+          birthtime: this.userInfo.birthtime
         });
 
         this.fetchUserSaju(response.data.id);
@@ -110,12 +82,19 @@ export default {
       }
     },
 
-    // 나가기 버튼 클릭
+    async fetchUserSaju() {
+      try {
+        const response = await axios.get(`http://34.64.230.160:3001/my_infos/1/user_saju`);
+        this.userSaju = response.data;
+      } catch (error) {
+        console.error('사주 정보 불러오기 오류:', error);
+      }
+    },
+
     FunctionNo() {
       console.log('나가기 버튼 클릭');
     },
 
-    // 이어서하기 버튼 클릭
     FunctionYes() {
       console.log('이어서하기 버튼 클릭');
     }

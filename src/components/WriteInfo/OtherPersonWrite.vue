@@ -15,9 +15,9 @@ export default {
     saveInfo() {
       const otherPersonData = {
         name: this.name,
-        time: this.$refs.timeInput.getTime(),  // TimeInput에서 시간을 가져오는 가정
-        gender: this.$refs.genderSelected.getGender(),  // GenderSelectedBtn에서 성별을 가져오는 가정
-        birth: this.$refs.birthInput.getBirth()  // BirthInput에서 생년월일을 가져오는 가정
+        time: this.$refs.timeInput.getTime(),
+        gender: this.$refs.genderSelected.getGender(),
+        birth: this.$refs.birthInput.getBirth()
       };
 
       localStorage.setItem('otherPersonInfo', JSON.stringify(otherPersonData));
