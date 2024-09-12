@@ -39,8 +39,8 @@ export default {
     return {
       otherPerson: null,
       userSaju: null,
-      apiUrl: "http://34.64.230.160:3001/my_infos/1", // 사용자 정보 저장 URL
-      userSajuUrl: "http://34.64.230.160:3001/my_infos/1/user_saju" // 사주 정보 가져오기 URL
+      apiUrl: "http://34.64.230.160:3001/my_infos/1",
+      userSajuUrl: "http://34.64.230.160:3001/my_infos/1/user_saju"
     };
   },
   mounted() {
